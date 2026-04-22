@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Beibei Zhang — Senior Design Fit Summary</title>
+<style>
+  :root {
+    --accent: #1E3A8A;
+    --accent-2: #0EA5E9;
+    --ink: #0F0F0F;
+    --muted: #6B6B6B;
+    --line: #E6E6E6;
+    --bg: #FAFAFA;
+    --card: #FFFFFF;
+    --accent-soft: #EEF2FF;
+    --tier-best: #1E3A8A;
+    --tier-strong: #D97706;
+    --tier-possible: #8A8A8A;
+    --paypal: #003087;
+    --adobe: #EB1000;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.workpal { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a.workpal:hover { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .logo-row { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { width: 38px; height: 38px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; font-weight: 800; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 17px; letter-spacing: -0.5px; }
+  .logo-txt { font-weight: 600; font-size: 13px; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
+  .me { text-align: right; font-size: 13px; color: var(--muted); }
+  .me b { color: var(--ink); font-weight: 600; }
+
+  /* Intro */
+  .intro { padding: 44px 0 28px; }
+  .intro h1 { font-size: 38px; line-height: 1.15; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.8px; }
+  .intro h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .intro p { font-size: 16px; color: #333; margin: 0 0 14px; max-width: 800px; }
+
+  /* Strengths pillars */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 6px; }
+  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  .pillar .num { color: var(--accent); font-weight: 700; font-size: 12px; letter-spacing: 0.4px; text-transform: uppercase; }
+  .pillar .t { font-size: 15px; font-weight: 600; margin: 6px 0 4px; }
+  .pillar .d { font-size: 13px; color: var(--muted); }
+
+  /* Section title */
+  .sec-title { font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 56px 0 8px; display: flex; align-items: center; gap: 12px; }
+  .sec-title .bar { display: inline-block; width: 28px; height: 2px; }
+  .sec-title.paypal .bar { background: var(--paypal); }
+  .sec-title.paypal .label { color: var(--paypal); }
+  .sec-title.adobe .bar { background: var(--adobe); }
+  .sec-title.adobe .label { color: var(--adobe); }
+  .sec-title .label { font-size: 18px; text-transform: none; letter-spacing: -0.2px; font-weight: 700; }
+  .sec-title .sub { color: var(--muted); font-weight: 500; font-size: 13px; text-transform: none; letter-spacing: 0; }
+  .sec-desc { font-size: 14px; color: #444; margin: 6px 0 22px; max-width: 760px; }
+
+  /* Role card */
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 26px; }
+  .card .top { display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 260px; }
+  .card .img-wrap { overflow: hidden; position: relative; min-height: 260px; }
+  .card .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .img-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; padding: 30px; text-align: center; font-size: 14px; line-height: 1.55; }
+  .card .img-fallback b { display: block; font-size: 22px; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.3px; }
+  .card .img-fallback .tag { display: inline-block; font-size: 11px; letter-spacing: 0.4px; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.18); margin-bottom: 14px; }
+  .fallback-paypal { background: linear-gradient(135deg, #003087 0%, #0070BA 50%, #00A0FF 100%); }
+  .fallback-venmo { background: linear-gradient(135deg, #008CFF 0%, #3D95CE 100%); }
+  .fallback-adobe { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+
+  .card .info { padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .tier { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; width: fit-content; }
+  .tier.best { background: var(--accent-soft); color: var(--tier-best); }
+  .tier.strong { background: #FFF6EA; color: var(--tier-strong); }
+  .tier.possible { background: #F1F1F1; color: var(--tier-possible); }
+  .tier .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .card h2 { font-size: 22px; line-height: 1.25; margin: 0; letter-spacing: -0.3px; font-weight: 700; }
+  .card .meta { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+  .card .meta span b { color: var(--ink); font-weight: 600; }
+  .card .product { font-size: 14px; color: #444; margin: 0; }
+  .card .product b { color: var(--accent); }
+  .card .link { font-size: 13px; margin-top: 2px; }
+
+  /* Body (expanded content) */
+  .card .body { border-top: 1px solid var(--line); padding: 24px 28px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .block h4 { font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 700; }
+  .block ul { margin: 0; padding-left: 18px; }
+  .block ul li { margin-bottom: 6px; font-size: 14px; color: #2c2c2c; }
+  .fit-list li { list-style: none; position: relative; padding-left: 22px; margin-bottom: 10px; font-size: 14px; }
+  .fit-list li:before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 800; }
+  .fit-list li b { color: #000; }
+
+  /* Closing */
+  .close { margin-top: 56px; padding: 34px 32px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .close h3 { margin: 0 0 10px; font-size: 20px; }
+  .close p { margin: 0 0 8px; color: #333; font-size: 15px; }
+  .close .sig { margin-top: 20px; color: var(--muted); font-size: 14px; }
+  .close .sig b { color: var(--ink); }
+
+  /* Footer */
+  .foot { margin-top: 40px; text-align: center; color: var(--muted); font-size: 12px; }
+
+  @media (max-width: 780px) {
+    .intro h1 { font-size: 30px; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .card .top { grid-template-columns: 1fr; }
+    .card .img-wrap { min-height: 220px; }
+    .card .body { grid-template-columns: 1fr; gap: 20px; }
+    .header { flex-direction: column; }
+    .me { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-mark">B</div>
+      <div>
+        <div style="font-weight:700; font-size:18px;">Senior Design · Fit Summary</div>
+        <div class="logo-txt">Prepared for hiring teams · April 2026</div>
+      </div>
+    </div>
+    <div class="me">
+      <b>Beibei Zhang</b><br/>
+      Staff Product Designer · 15+ yrs<br/>
+      beibeizhang1122@gmail.com · 415-309-6496<br/>
+      <a href="https://beibeidesign.com">beibeidesign.com</a> · <a href="https://www.linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <section class="intro">
+    <h1>The roles where I'm a <span>highly direct fit</span>.</h1>
+    <p>Hi — I'm Beibei. I'm a design leader with 15+ years of experience across Tencent, Cheetah Mobile, Walmart Global Tech, and founder-led ventures. Most recently — <b>for six years as a Staff Product Designer at Walmart Global Tech, I led strategic initiatives within Walmart's Last Mile Delivery, awarded "Making a Difference"</b> for strategic product impact. In parallel this past year I've been designing <b><a href="https://my-workpal.vercel.app/" target="_blank" rel="noopener" class="workpal">WorkPal</a></b>, an agentic AI workspace — establishing interaction protocols for autonomous AI agents that handle meetings, tasks, and cross-platform knowledge retrieval.</p>
+    <p>This page covers the open roles at <b>PayPal / Venmo</b> where my background maps most directly. For each: what the product is, what the role asks for, the salary band, and where my experience lines up.</p>
+
+    <!-- Strengths pillars -->
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">01</div>
+        <div class="t">Agentic AI, hands-on</div>
+        <div class="d">Designed WorkPal — autonomous AI agent system for meetings, tasks, and cross-platform retrieval. Built the early interaction protocols for AI surfaces end-to-end.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <div class="t">Consumer scale, proven</div>
+        <div class="d">Shaped flows used by 740M+ users at Cheetah; led Last Mile Delivery platform at Walmart Global Tech — awarded "Making a Difference" for strategic impact.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <div class="t">0→1 and systems</div>
+        <div class="d">Cofounded Tooride (5-yr venture). At Tencent, authored cross-product SNS guidelines and wrote a chapter in the official design book.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">04</div>
+        <div class="t">Player-coach leader</div>
+        <div class="d">I hold the craft bar personally, mentor designers, and drive cross-functional alignment. Colleagues consistently cite clarity under ambiguity as a core strength.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== PayPal / Venmo ================== -->
+  <div class="sec-title paypal">
+    <span class="bar"></span>
+    <span class="label">PayPal & Venmo</span>
+    <span class="sub">· Design & User Experience · Bay Area</span>
+  </div>
+  <p class="sec-desc">PayPal's design org spans <b>PayPal core</b> (Money Movement, P2P, Agentic Commerce, Identity, Checkout), <b>Venmo</b>, <b>Braintree</b>, and <b>Workshop</b> — the advanced "think/make" team for next-generation concepts. Across 400M+ active accounts, the org is now investing heavily in <b>agentic commerce</b> (AI agents that shop and pay on a user's behalf) following the Cymbio acquisition and Google Agent Payments Protocol work. The five roles below are currently open and map most directly to my background.</p>
+
+  <!-- 1. Principal Experience Designer - Agentic Checkout -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <img src="https://newsroom.paypal-corp.com/image/PayPalAgentic_1x1.png"
+             alt="PayPal Agentic Checkout"
+             onerror="this.parentElement.innerHTML='<div class=&quot;img-fallback fallback-paypal&quot;><span class=&quot;tag&quot;>PayPal · Agentic Checkout</span><b>Agentic Checkout</b>AI-augmented, autonomous user experiences for payments. Defining how agents shop, decide, and pay on a user&#39;s behalf — and how humans stay in the loop.</div>'" />
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Principal Experience Designer – Agentic Checkout</h2>
+        <div class="meta">
+          <span><b>Product:</b> PayPal · XD Consumer · AI-augmented payments</span>
+          <span><b>Location:</b> San Jose, CA (hybrid · 3 in-office / 2 flex)</span>
+          <span><b>Level:</b> Principal · 10+ yrs</span>
+          <span><b>Salary:</b> $218,000 – $323,950 + bonus + equity</span>
+        </div>
+        <p class="product"><b>What is it?</b> "How customers shop is undergoing the most dramatic shift since the rise of ecommerce." This role autonomously designs and leads <b>end-to-end, AI-augmented, and autonomous user experiences</b> that define the future of digital payments — establishing UX strategy and architecting adaptive solutions across multiple teams.</p>
+        <a class="link" href="https://paypal.eightfold.ai/careers/job/274916235440">View on PayPal careers →</a>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Autonomously design and lead end-to-end, AI-augmented, autonomous user experiences for payments</li>
+          <li>Establish UX strategy AND architect adaptive solutions across multiple teams</li>
+          <li>Experience designing for agentic experiences; intuitive interaction models between people and AI agents</li>
+          <li>Familiarity with LLM models and training methods</li>
+          <li>Leverage business data and analytics to innovate, prioritize, inform design</li>
+          <li>Dynamic portfolio — concept to post-launch; Figma fluency (prototyping, shared components)</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Agentic experience, hands-on.</b> WorkPal is exactly this — an autonomous AI agent system with LLM-driven interfaces, intent inference, and agent observability. I've built the early interaction protocols for human ↔ AI agent models that this JD asks for.</li>
+          <li><b>Architecting adaptive solutions across teams.</b> Walmart Last Mile Delivery required restructuring the end-to-end workflow across driver, dispatch, customer, and ops — "architect adaptive solutions across multiple teams" is how I operated for six years. Awarded "Making a Difference."</li>
+          <li><b>15+ years at Principal-level operating mode.</b> Tencent (QQLink, Tencent Music, QZone) → Cheetah (740M+ users) → Tooride (cofounder/CPO, 5-yr run) → Booster (4.9★) → Walmart Staff → WorkPal.</li>
+          <li><b>Concept to post-launch portfolio.</b> Cofounder at Tooride (0→1 mobility platform, launched to market); WorkPal built through concept → hi-fi prototype → interaction protocol. Ownership end-to-end is my default.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2. Principal Experience Designer - Agentic -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <img src="https://newsroom.paypal-corp.com/image/PayPalAgentic_1x1.png"
+             alt="PayPal Agentic — CDO Admin"
+             onerror="this.parentElement.innerHTML='<div class=&quot;img-fallback fallback-paypal&quot;><span class=&quot;tag&quot;>PayPal · Agentic (CDO Admin)</span><b>Agentic Design</b>A Principal-level Agentic role under PayPal&#39;s CDO org — shaping executive-level UX strategy for agentic AI surfaces across the PayPal network.</div>'" />
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Principal Experience Designer – Agentic</h2>
+        <div class="meta">
+          <span><b>Product:</b> PayPal · CDO Admin · Agentic direction</span>
+          <span><b>Location:</b> San Jose, CA (hybrid · 3 in-office / 2 flex)</span>
+          <span><b>Level:</b> Principal · 10+ yrs</span>
+          <span><b>Salary:</b> $218,000 – $323,950 + bonus + equity</span>
+        </div>
+        <p class="product"><b>What is it?</b> A Principal role explicitly titled <b>Agentic</b>, sitting under PayPal's CDO Admin org. Establishes the overall business and technical strategy for user experience initiatives, significantly influencing executive-level decision-making; leads UX strategy that integrates user-centered design across all projects.</p>
+        <a class="link" href="https://paypal.eightfold.ai/careers/job/274915953966">View on PayPal careers →</a>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Establish overall business / technical strategy for UX initiatives</li>
+          <li>Influence decision-making at the senior executive level</li>
+          <li>Lead the development of UX strategies resonating with target audiences</li>
+          <li>Analyze user feedback to inform design improvements and innovations</li>
+          <li>Ensure user-centered design principles are integrated into all projects</li>
+          <li>Mentor less-experienced roles; 10+ years relevant experience</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Agentic thesis, actively shaping.</b> WorkPal is my self-initiated agentic workspace where I'm building the interaction protocols for autonomous agents — project-as-memory, intent inference over UI toggles, Overview as agent observability. Not claiming agentic experience; authoring it.</li>
+          <li><b>Executive-level influence.</b> Walmart Last Mile strategic initiatives required aligning VP/exec stakeholders on platform-level change. Pitched investors as cofounder at Tooride. Led internal design reviews at Tencent. Comfortable at the strategic-influence layer.</li>
+          <li><b>Authored-guidelines pedigree.</b> Tencent's cross-product SNS design guidelines (QQLink, QZone, Tencent Music) + chapter in Tencent's official design book ("Design is Communication"). I shape process and vocabulary, not just screens.</li>
+          <li><b>15+ years across consumer scale.</b> Tencent → Cheetah (740M+) → Tooride → Booster → Walmart → WorkPal. "UX strategy that resonates with target audiences" at every scale from 0 to hundreds of millions.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3. Staff Product Designer, Venmo Checkout -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <img src="https://newsroom.paypal-corp.com/image/Venmo_16x7.png"
+             alt="Pay with Venmo checkout"
+             onerror="this.parentElement.innerHTML='<div class=&quot;img-fallback fallback-venmo&quot;><span class=&quot;tag&quot;>Pay with Venmo</span><b>Venmo Checkout</b>The Pay-with-Venmo checkout experience — one-time purchases, billing agreements, Pay Later, Venmo balance + Rewards integrations across third-party e-commerce.</div>'" />
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Staff Product Designer, Venmo Checkout</h2>
+        <div class="meta">
+          <span><b>Product:</b> Pay with Venmo · Venmo Experience Design</span>
+          <span><b>Location:</b> San Jose, CA (hybrid)</span>
+          <span><b>Level:</b> Staff · 7+ yrs</span>
+          <span><b>Salary:</b> $176,500 – $262,350 + bonus + equity</span>
+        </div>
+        <p class="product"><b>What is it?</b> The fastest-growing surface in Venmo: the <i>Pay with Venmo</i> checkout experience across third-party e-commerce, including one-time purchases, billing agreements, Pay Later, and Venmo balance + Rewards integrations.</p>
+        <a class="link" href="https://paypal.eightfold.ai/careers?location=San+Francisco%2C+California%2C+US&filter_job_category=Experience+Design%2CContent+Design%2CExperience+Research">View on PayPal careers →</a>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Lead design for payment experiences: one-time, billing agreements, Pay Later, Venmo balance + Rewards</li>
+          <li>Mastery across UX flows, visual design, site mapping, product architecture</li>
+          <li>Retail / commerce / fintech instinct — especially checkout</li>
+          <li>Systems-level thinking with focus on design scalability</li>
+          <li>Mentor designers; present work to stakeholders</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Commerce-scale strategic design, 6 years.</b> As Staff Product Designer at Walmart Global Tech I led strategic initiatives within Walmart's Last Mile Delivery — the multi-actor flow (driver, dispatch, customer) that sits downstream of every Walmart transaction. Awarded "Making a Difference" for strategic product impact.</li>
+          <li><b>Scalable architecture.</b> At Walmart I restructured the end-to-end delivery workflow to increase efficiency and enable platform growth. "Systems-level thinking with focus on scalability" is literally how my last role was scoped.</li>
+          <li><b>Mobile + consumer payment-adjacent flows.</b> Booster (4.9★), Tooride (0→1 mobility app, payment-integrated), Cheetah (740M+ users) — I've shipped consumer mobile payment-adjacent flows at every scale.</li>
+          <li><b>Trust + restraint on money surfaces.</b> Payment UX demands clarity and trust. I authored Tencent's cross-product SNS design guidelines — the same trust-signal discipline applied to social identity.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3. Staff Experience Designer, Venmo Core -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <img src="https://newsroom.paypal-corp.com/image/Venmo_16x7.png"
+             alt="Venmo core experiences"
+             onerror="this.parentElement.innerHTML='<div class=&quot;img-fallback fallback-venmo&quot;><span class=&quot;tag&quot;>Venmo · Core Experiences</span><b>Venmo Core</b>The end-to-end Venmo app — P2P, growth, groups, and the core flows millions open daily. Reimagining how the app feels and performs at scale.</div>'" />
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Staff Experience Designer, Venmo Core</h2>
+        <div class="meta">
+          <span><b>Product:</b> Venmo app · Core Experiences (P2P, growth, groups)</span>
+          <span><b>Location:</b> San Jose, CA or NYC (hybrid · 3 in-office / 2 flex)</span>
+          <span><b>Level:</b> Staff · 5+ yrs</span>
+          <span><b>Salary:</b> $176,500 – $262,350 + bonus + equity</span>
+        </div>
+        <p class="product"><b>What is it?</b> The Venmo Core Experiences Design team is reimagining the end-to-end experiences Venmo consumers open every day — <b>P2P, growth, groups</b>, and other core flows. Partnering with PM and engineering to shape strategy and roadmap for the Venmo app at scale.</p>
+        <a class="link" href="https://paypal.eightfold.ai/careers/job/274918885921">View on PayPal careers →</a>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Shape end-to-end Venmo core experiences (P2P, growth, groups) for millions of users</li>
+          <li>5+ years in product design; blend of UX and visual design strengths</li>
+          <li>Mastery of product design methodology across mobile, web, and native surfaces</li>
+          <li>Work across design systems fluidly; drive cohesion across related PayPal surfaces</li>
+          <li>Exceptional communication, presentation, stakeholder management</li>
+          <li>Figma + prototyping mastery</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Consumer-scale mobile craft, proven.</b> Shaped flows used by 740M+ users at Cheetah; 4.9★ rating at Booster; six years Staff at Walmart Global Tech. "Consumer-facing app" with "high bar for craft" is the through-line of my career.</li>
+          <li><b>Design systems fluency, authored.</b> Created Tencent's cross-product SNS design guidelines (QQLink, QZone, Tencent Music); established WorkPal's early interaction protocols for agentic surfaces. "Driving cohesion across related products" is literally how I operate.</li>
+          <li><b>Strategic craft + business outcomes.</b> Walmart Last Mile strategic initiatives — awarded "Making a Difference" for strategic product impact. Craft and measurable outcome, not one or the other.</li>
+          <li><b>Stakeholder presence.</b> Presented to VP/exec stakeholders at Walmart, investors at Tooride (5-yr cofounder run), internal design leadership at Tencent. Comfortable in iterative, fast-paced teams with minimal oversight.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 4. Principal Designer – Workshop (PayPal Global Design) -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <img src="https://newsroom.paypal-corp.com/image/PPWorld_2025_16x7.gif"
+             alt="PayPal Workshop — advanced concept team"
+             onerror="this.parentElement.innerHTML='<div class=&quot;img-fallback fallback-paypal&quot;><span class=&quot;tag&quot;>PayPal · Workshop</span><b>PayPal Workshop</b>The advanced product design team — a think/make environment conceptualizing, prototyping, and testing next-generation PayPal experiences. Reports to Sr. Director, Design Workshop.</div>'" />
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Principal Designer – Workshop</h2>
+        <div class="meta">
+          <span><b>Product:</b> PayPal Global Design · Workshop (next-gen concepts)</span>
+          <span><b>Location:</b> San Jose, CA (hybrid)</span>
+          <span><b>Level:</b> Principal · 10+ yrs</span>
+          <span><b>Salary:</b> Principal band at PayPal (est. $188K–$324K + bonus + equity)</span>
+        </div>
+        <p class="product"><b>What is it?</b> Workshop is PayPal's advanced product design team — a <i>think/make</i> environment for <b>conceptualizing, prototyping, and testing next-generation experiences</b>, balancing groundbreaking innovation with feasibility, desirability, and commercial viability. Principals here influence strategic direction across platforms and form factors.</p>
+        <a class="link" href="https://paypal.eightfold.ai/careers?location=San+Jose%2C+California%2C+US&filter_job_category=UX+Design&domain=paypal.com">View on PayPal careers →</a>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Drive best practices in process and methodology across the Global Design team</li>
+          <li>Guide UX efforts across teams: strategy, planning, cross-functional alignment</li>
+          <li>Present effectively to senior staff and stakeholders; remove blockers</li>
+          <li>Design + prototyping that brings clarity to early product development</li>
+          <li>Experience-grounded point of view on emerging technologies</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Think/make is literally my current mode.</b> WorkPal — agentic AI workspace — was built through concept → hi-fi prototype → interaction protocol. "Conceptualizing, prototyping, testing next-gen experiences" is what I've done every week for a year.</li>
+          <li><b>Strategic design with cross-team scope.</b> Walmart Last Mile strategic initiatives required aligning PM, eng, ops, and exec stakeholders on platform-level change. "Guide UX efforts across teams" is my default operating mode.</li>
+          <li><b>Tencent authored-guidelines pedigree.</b> Cross-product SNS design guidelines + chapter in Tencent's official design book ("Design is Communication"). I set process + vocabulary, not just screens.</li>
+          <li><b>Senior-leadership presence.</b> Presented to VP/exec stakeholders at Walmart, investors at Tooride (5-yr run as cofounder/CPO).</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Closing -->
+  <section class="close">
+    <h3>The short version.</h3>
+    <p>Of the five roles above, the one I'd most want to talk about first is <b>Principal Experience Designer – Agentic Checkout</b> — followed by <b>Principal Experience Designer – Agentic</b>, <b>Principal Designer – Workshop</b>, <b>Staff Product Designer, Venmo Checkout</b>, and <b>Staff Experience Designer, Venmo Core</b>. Each sits right where my Walmart Last Mile strategic work, WorkPal's agentic AI, and 15 years of consumer-scale design naturally converge.</p>
+    <p>If any of these resonate, I'd love to talk. Portfolio: <a href="https://beibeidesign.com">beibeidesign.com</a>. Reachable at <a href="mailto:beibeizhang1122@gmail.com">beibeizhang1122@gmail.com</a> or 415-309-6496.</p>
+    <div class="sig">Thanks for reading,<br/><b>Beibei Zhang</b></div>
+  </section>
+
+  <div class="foot">Prepared April 2026 · Salary ranges + job details sourced from paypal.eightfold.ai. Screenshots are references; click through for the live product.</div>
+
+</div>
+</body>
+</html>

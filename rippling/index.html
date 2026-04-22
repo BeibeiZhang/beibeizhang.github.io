@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Beibei Zhang — Rippling Fit Summary</title>
+<style>
+  :root {
+    --accent: #0B0B0B;
+    --accent-2: #FFCC33;
+    --ink: #0F0F0F;
+    --muted: #6B6B6B;
+    --line: #E6E6E6;
+    --bg: #FAFAFA;
+    --card: #FFFFFF;
+    --accent-soft: #FFF6D6;
+    --tier-best: #0B0B0B;
+    --tier-strong: #8A5B00;
+    --tier-possible: #8A8A8A;
+    --rippling: #FFCC33;
+    --rippling-ink: #0B0B0B;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent-2); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 3px; }
+  a.workpal { color: inherit; text-decoration: underline; text-decoration-color: var(--accent-2); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .logo-row { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { width: 38px; height: 38px; background: var(--rippling); color: var(--rippling-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 17px; letter-spacing: -0.5px; }
+  .logo-txt { font-weight: 600; font-size: 13px; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
+  .me { text-align: right; font-size: 13px; color: var(--muted); }
+  .me b { color: var(--ink); font-weight: 600; }
+
+  /* Intro */
+  .intro { padding: 44px 0 28px; }
+  .intro h1 { font-size: 38px; line-height: 1.15; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.8px; }
+  .intro h1 span { background: linear-gradient(90deg, #0B0B0B 0%, #3A3A3A 40%, #FFCC33 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .intro p { font-size: 16px; color: #333; margin: 0 0 14px; max-width: 800px; }
+
+  /* Strengths pillars */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 6px; }
+  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; position: relative; }
+  .pillar::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--rippling); border-radius: 10px 0 0 10px; }
+  .pillar .num { color: var(--rippling-ink); font-weight: 700; font-size: 12px; letter-spacing: 0.4px; text-transform: uppercase; }
+  .pillar .t { font-size: 15px; font-weight: 600; margin: 6px 0 4px; }
+  .pillar .d { font-size: 13px; color: var(--muted); }
+
+  /* Section title */
+  .sec-title { font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 56px 0 8px; display: flex; align-items: center; gap: 12px; }
+  .sec-title .bar { display: inline-block; width: 28px; height: 4px; background: var(--rippling); border-radius: 2px; }
+  .sec-title .label { color: var(--ink); font-size: 18px; text-transform: none; letter-spacing: -0.2px; font-weight: 700; }
+  .sec-title .sub { color: var(--muted); font-weight: 500; font-size: 13px; text-transform: none; letter-spacing: 0; }
+  .sec-desc { font-size: 14px; color: #444; margin: 6px 0 22px; max-width: 760px; }
+
+  /* Role card */
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 26px; }
+  .card .top { display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 260px; }
+  .card .img-wrap { overflow: hidden; position: relative; min-height: 260px; }
+  .card .img-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; font-size: 14px; line-height: 1.55; }
+  .card .img-fallback b { display: block; font-size: 22px; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.3px; }
+  .card .img-fallback .tag { display: inline-block; font-size: 11px; letter-spacing: 0.4px; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
+  .fallback-ai { background: linear-gradient(135deg, #0B0B0B 0%, #1A1A1A 50%, #FFCC33 130%); color: white; }
+  .fallback-ai .tag { background: rgba(255, 204, 51, 0.25); color: #FFCC33; }
+  .fallback-platform { background: linear-gradient(135deg, #FFCC33 0%, #FFE08A 100%); color: #0B0B0B; }
+  .fallback-platform .tag { background: rgba(11, 11, 11, 0.12); color: #0B0B0B; }
+
+  .card .info { padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .tier { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; width: fit-content; }
+  .tier.best { background: var(--accent-soft); color: var(--tier-best); }
+  .tier.strong { background: #FFF6EA; color: var(--tier-strong); }
+  .tier .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .card h2 { font-size: 22px; line-height: 1.25; margin: 0; letter-spacing: -0.3px; font-weight: 700; }
+  .card .meta { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+  .card .meta span b { color: var(--ink); font-weight: 600; }
+  .card .product { font-size: 14px; color: #444; margin: 0; }
+  .card .product b { color: var(--ink); }
+  .card .link { font-size: 13px; margin-top: 2px; }
+
+  /* Body */
+  .card .body { border-top: 1px solid var(--line); padding: 24px 28px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .block h4 { font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 700; }
+  .block ul { margin: 0; padding-left: 18px; }
+  .block ul li { margin-bottom: 6px; font-size: 14px; color: #2c2c2c; }
+  .fit-list li { list-style: none; position: relative; padding-left: 22px; margin-bottom: 10px; font-size: 14px; }
+  .fit-list li:before { content: "✓"; position: absolute; left: 0; top: 0; color: #0B0B0B; background: var(--rippling); width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; line-height: 1; }
+  .fit-list li b { color: #000; }
+
+  /* Closing */
+  .close { margin-top: 56px; padding: 34px 32px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; position: relative; overflow: hidden; }
+  .close::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--rippling); }
+  .close h3 { margin: 0 0 10px; font-size: 20px; }
+  .close p { margin: 0 0 8px; color: #333; font-size: 15px; }
+  .close .sig { margin-top: 20px; color: var(--muted); font-size: 14px; }
+  .close .sig b { color: var(--ink); }
+
+  /* Footer */
+  .foot { margin-top: 40px; text-align: center; color: var(--muted); font-size: 12px; }
+
+  @media (max-width: 780px) {
+    .intro h1 { font-size: 30px; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .card .top { grid-template-columns: 1fr; }
+    .card .img-wrap { min-height: 220px; }
+    .card .body { grid-template-columns: 1fr; gap: 20px; }
+    .header { flex-direction: column; }
+    .me { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-mark">B</div>
+      <div>
+        <div style="font-weight:700; font-size:18px;">Rippling · Design Lead Fit Summary</div>
+        <div class="logo-txt">Prepared for hiring teams · April 2026</div>
+      </div>
+    </div>
+    <div class="me">
+      <b>Beibei Zhang</b><br/>
+      Staff Product Designer · 15+ yrs<br/>
+      beibeizhang1122@gmail.com · 415-309-6496<br/>
+      <a href="https://beibeidesign.com">beibeidesign.com</a> · <a href="https://www.linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <section class="intro">
+    <h1>Systems thinking, AI fluency — <span>built for Rippling.</span></h1>
+    <p>Hi — I'm Beibei. I'm a design leader with 15+ years across Tencent, Cheetah Mobile, Walmart Global Tech, and founder-led ventures. Most recently — <b>for six years as a Staff Product Designer at Walmart Global Tech, I led strategic initiatives within Walmart's Last Mile Delivery, awarded "Making a Difference"</b> for strategic product impact. In parallel this past year, I've been designing <b><a href="https://my-workpal.vercel.app/" target="_blank" rel="noopener" class="workpal">WorkPal</a></b> — an agentic AI workspace with autonomous agents for meetings, tasks, and cross-platform knowledge retrieval. I've been building exactly the human ↔ AI interaction protocols, evaluation loops, and explainable surfaces that Rippling's Search &amp; AI and Platform teams are now scaling.</p>
+    <p>This page covers the two open <b>Product Design Lead</b> roles at Rippling where my background maps most directly — <b>AI</b> and <b>Platform</b>. For each: what the product is, what the role asks for, the salary band, and where my experience lines up.</p>
+
+    <!-- Strengths pillars -->
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">01</div>
+        <div class="t">Enterprise AI, hands-on</div>
+        <div class="d">Designed WorkPal — autonomous AI agent system with LLM-driven interfaces, intent inference, human-in-the-loop moments, and agent observability. Built the interaction protocols end-to-end.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <div class="t">Systems thinking, authored</div>
+        <div class="d">Authored Tencent's cross-product SNS guidelines (QQLink, QZone, Tencent Music); led Walmart Last Mile end-to-end workflow restructuring. Platform coherence at scale is my default.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <div class="t">Complexity → clarity</div>
+        <div class="d">Walmart Last Mile: multi-actor flows across driver, dispatch, customer, and ops. Cofounder at Tooride (0→1 mobility platform). Simplifying without reducing power is the through-line.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">04</div>
+        <div class="t">Player-coach leader</div>
+        <div class="d">I hold the craft bar personally, mentor designers, and align cross-functional partners. Bias for action under ambiguity — cited by colleagues as a core strength.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== Rippling ================== -->
+  <div class="sec-title">
+    <span class="bar"></span>
+    <span class="label">Rippling</span>
+    <span class="sub">· San Francisco / New York / Seattle · HR + IT + Finance platform</span>
+  </div>
+  <p class="sec-desc">Rippling gives businesses one place to run HR, IT, and Finance — managing payroll, expenses, benefits, computers, and third-party apps like Slack and Microsoft 365 in a single system. Backed by <b>$1.85B+</b> from Kleiner Perkins, Founders Fund, Sequoia, Greenoaks, and Bedrock. The two Product Design Lead roles below sit right where my WorkPal agentic AI work and Walmart/Tencent systems work naturally converge.</p>
+
+  <!-- 1. Product Design Lead, AI -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <div class="img-fallback fallback-ai">
+          <span class="tag">Rippling · Search &amp; AI Platform</span>
+          <b>Product Design Lead, AI</b>
+          Universal search, embedded assistants, AI-assisted workflows — plus the platform primitives (prompt governance, eval frameworks, reusable UI) that other product teams plug into.
+        </div>
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Product Design Lead, AI</h2>
+        <div class="meta">
+          <span><b>Product:</b> Unified Search &amp; AI platform · embedded assistants</span>
+          <span><b>Location:</b> SF · NYC · Seattle (in-office 3 days/wk)</span>
+          <span><b>Level:</b> Lead · portfolio over years-in-seat</span>
+          <span><b>Salary:</b> $165,000 – $288,750 + equity (US Tier 1)</span>
+        </div>
+        <p class="product"><b>What is it?</b> Lead the design of a unified Search &amp; AI platform that powers discovery and assistance across Rippling. Blend deterministic systems with probabilistic models, design <b>graceful fallbacks and human-in-the-loop moments</b>, and craft platform primitives (prompt/safety controls, evaluation loops, reusable UI) that product teams plug into seamlessly.</p>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>Design end-to-end Search &amp; AI experience — universal search to embedded assistants — fast, reliable, explainable, radically simple</li>
+          <li>Familiarity with LLMs, embeddings / vector search, RAG, tool / agent orchestration, evaluation / observability, safety / privacy</li>
+          <li>Design interplay of deterministic systems + probabilistic models; model failure states and recovery; transparent, user-controllable experiences</li>
+          <li>Build reusable capabilities — ranking / filtering, prompt governance, eval frameworks, UI components — that scale across product suite</li>
+          <li>Conversation design + interaction prototyping skills; partner with Product, Eng, Applied ML, GTM</li>
+          <li>Systems thinking; simplify complexity in compliance-heavy environments</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Agentic AI interaction protocols, authored.</b> WorkPal is exactly this shape — autonomous agent system with LLM-driven interfaces, intent inference over rigid UI toggles, human-in-the-loop moments, and <b>Overview as agent observability</b>. I've built the platform primitives this JD describes — not claiming familiarity, authoring them.</li>
+          <li><b>Deterministic + probabilistic, blended.</b> Walmart Last Mile sat on top of dispatch rules + routing optimization — a deterministic foundation augmented by predictive ETAs and exception handling. I know how to design graceful fallbacks when the probabilistic layer is wrong.</li>
+          <li><b>Complexity → radical simplicity.</b> Walmart Last Mile: multi-actor workflow across driver, dispatch, customer, ops. Tencent SNS: cross-product unified experience across QQLink, QZone, Tencent Music. "Simplify without reducing power" is literally my track record.</li>
+          <li><b>Compliance-heavy instinct.</b> Walmart operations + fintech-adjacent at Booster + payment flows at Tooride. I design for strict permissioning, auditability, and explainability by default.</li>
+          <li><b>Portfolio > years-in-seat.</b> The JD explicitly says "we care more about craft and outcomes than years in seat" — my WorkPal portfolio (concept → hi-fi prototype → interaction protocol) + Walmart strategic work are exactly that kind of evidence.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2. Product Design Lead, Platform -->
+  <article class="card">
+    <div class="top">
+      <div class="img-wrap">
+        <div class="img-fallback fallback-platform">
+          <span class="tag">Rippling · Platform</span>
+          <b>Product Design Lead, Platform</b>
+          The connective tissue of Rippling — permissions models, integrations, data governance, and shared surfaces (home, navigation) that make the entire product feel coherent across HR, IT, and Finance.
+        </div>
+      </div>
+      <div class="info">
+        <span class="tier best"><span class="dot"></span>Best fit</span>
+        <h2>Product Design Lead, Platform</h2>
+        <div class="meta">
+          <span><b>Product:</b> Platform primitives · permissions · integrations · shared surfaces</span>
+          <span><b>Location:</b> SF · NYC · Seattle (in-office 3 days/wk)</span>
+          <span><b>Level:</b> Lead · 8+ yrs end-to-end</span>
+          <span><b>Salary:</b> $165,000 – $288,750 + equity (US Tier 1)</span>
+        </div>
+        <p class="product"><b>What is it?</b> Design the <b>connective tissue</b> of Rippling — the underlying systems, primitives, and shared surfaces (home, navigation) that make HR + IT + Finance feel like one unified system. Permissions models across contexts, integrations with governance, data visualization, edge cases in multi-system flows.</p>
+      </div>
+    </div>
+    <div class="body">
+      <div class="block">
+        <h4>What the role needs</h4>
+        <ul>
+          <li>8+ years end-to-end product design with portfolio demonstrating systems design and complex product delivery</li>
+          <li>Design core platform primitives that scale across products</li>
+          <li>Make abstract, complex systems concrete — simplify without reducing power</li>
+          <li>Scalable, extensible frameworks balancing flexibility + usability</li>
+          <li>Shared surfaces (home, navigation) cohesive and delightful</li>
+          <li>Edge cases in data flows, governance, multi-system integrations</li>
+          <li>Systems-mindedness; connections across products with platform coherence</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Why I fit</h4>
+        <ul class="fit-list">
+          <li><b>Platform primitives authored at Tencent.</b> I created cross-product SNS design guidelines for QQLink, QZone, and Tencent Music — the same "connective tissue" challenge as Rippling HR + IT + Finance. Shared identity, navigation, interaction models across very different product teams.</li>
+          <li><b>Walmart Last Mile end-to-end.</b> Six years restructuring the multi-actor workflow across driver, dispatch, customer, ops — defining how rules, permissions, and data cross-cut every surface. Awarded "Making a Difference" for strategic product impact.</li>
+          <li><b>Abstract → concrete.</b> Tooride (cofounder/CPO, 5-yr run) required turning mobility-platform abstractions into usable consumer + driver flows. Booster (4.9★) built trust around fuel-delivery scheduling primitives. "Abstract systems made concrete" is my default output.</li>
+          <li><b>Craft bar + player-coach.</b> I hold a high craft bar personally, mentor designers, and drive cross-functional alignment through ambiguity. Authored the <b>"Design is Communication"</b> chapter in Tencent's official design book.</li>
+          <li><b>Systems-minded by temperament.</b> Every role I've held — Tencent guidelines, Walmart platform, WorkPal agentic framework — has been about connections across products, not a single screen. This role reads like my operating default.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Closing -->
+  <section class="close">
+    <h3>The short version.</h3>
+    <p>Of the two roles above, the one I'd most want to talk about first is <b>Product Design Lead, AI</b> — my WorkPal agentic AI work sits exactly at the human ↔ AI interaction-protocol layer this role is defining. <b>Product Design Lead, Platform</b> is an equally strong match on the systems-thinking and authored-primitives side — Tencent cross-product guidelines + Walmart Last Mile end-to-end are direct analogs.</p>
+    <p>If either resonates, I'd love to talk. Portfolio: <a href="https://beibeidesign.com">beibeidesign.com</a>. Reachable at <a href="mailto:beibeizhang1122@gmail.com">beibeizhang1122@gmail.com</a> or 415-309-6496.</p>
+    <div class="sig">Thanks for reading,<br/><b>Beibei Zhang</b></div>
+  </section>
+
+  <div class="foot">Prepared April 2026 · Role details + salary ranges sourced from Rippling career materials. Screenshots are references.</div>
+
+</div>
+</body>
+</html>
