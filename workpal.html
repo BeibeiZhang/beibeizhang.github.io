@@ -81,12 +81,22 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .btn-primary:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(118, 82, 185, 0.32); }
+  /* TertiaryButton — bordered transparent w/ gradient border on hover (WorkPal spec) */
   .btn-secondary {
-    background: var(--card); border: 1px solid var(--line);
-    color: var(--ink); font-weight: 600; font-size: 14px;
-    padding: 11px 18px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 14px; line-height: 22px; font-weight: 700;
+    padding: 10px 20px; border-radius: 4px;
+    transition: background 0.15s ease;
   }
-  .btn-secondary:hover { text-decoration: none; border-color: var(--ink-3); }
+  .btn-secondary:hover {
+    text-decoration: none;
+    border-color: transparent;
+    background:
+      linear-gradient(var(--bg), var(--bg)) padding-box,
+      linear-gradient(74deg, var(--grad-start) 0%, var(--grad-mid) 52%, var(--grad-end) 100%) border-box;
+  }
 
   /* Hero marketing image */
   .product-shot {
