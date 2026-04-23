@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>WorkPal — A case study by Beibei Zhang</title>
+<style>
+  :root {
+    /* WorkPal brand tokens (from product design system) */
+    --ink: #142740;
+    --ink-2: rgba(20, 39, 64, 0.7);
+    --ink-3: rgba(20, 39, 64, 0.4);
+    --bg: #F7F7F8;
+    --card: #FFFFFF;
+    --line: #E8E8E8;
+    --blue: #3171FF;
+    --blue-soft: rgba(49, 113, 255, 0.1);
+
+    /* Brand gradient — used sparingly per WorkPal design principle (1–2% page budget) */
+    --grad-start: #7652B9;
+    --grad-mid:   #B46470;
+    --grad-end:   #CA9D8C;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 48px 28px 80px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .logo-row { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--grad-start), var(--grad-mid), var(--grad-end));
+    color: white; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 18px; letter-spacing: -0.5px;
+  }
+  .logo-meta .ttl { font-weight: 700; font-size: 18px; letter-spacing: -0.2px; }
+  .logo-meta .sub { font-weight: 600; font-size: 12px; color: var(--ink-2); letter-spacing: 0.3px; text-transform: uppercase; }
+  .me { text-align: right; font-size: 13px; color: var(--ink-2); }
+  .me b { color: var(--ink); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 56px 0 36px; }
+  .hero .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+    color: var(--ink-2);
+    background: var(--card); border: 1px solid var(--line);
+    padding: 6px 12px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .hero .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--grad-start), var(--grad-end)); }
+  .hero h1 {
+    font-size: 48px; line-height: 1.1; margin: 0 0 20px;
+    font-weight: 700; letter-spacing: -1px;
+    max-width: 880px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-mid), var(--grad-end));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { font-size: 17px; color: #2c2c2c; margin: 0 0 22px; max-width: 760px; line-height: 1.6; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-mid), var(--grad-end));
+    color: white; font-weight: 600; font-size: 14px;
+    padding: 11px 20px; border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(118, 82, 185, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(118, 82, 185, 0.32); }
+  .btn-secondary {
+    background: var(--card); border: 1px solid var(--line);
+    color: var(--ink); font-weight: 600; font-size: 14px;
+    padding: 11px 18px; border-radius: 999px;
+  }
+  .btn-secondary:hover { text-decoration: none; border-color: var(--ink-3); }
+
+  /* Hero product shot */
+  .product-shot {
+    margin-top: 36px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(20, 39, 64, 0.08), 0 2px 6px rgba(20, 39, 64, 0.04);
+  }
+  .product-shot .chrome {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    background: #FAFAFB;
+    border-bottom: 1px solid var(--line);
+  }
+  .product-shot .chrome .dot { width: 10px; height: 10px; border-radius: 50%; background: #E1E1E3; }
+  .product-shot .chrome .dot:nth-child(1) { background: #FF5F57; }
+  .product-shot .chrome .dot:nth-child(2) { background: #FEBC2E; }
+  .product-shot .chrome .dot:nth-child(3) { background: #28C840; }
+  .product-shot .chrome .url {
+    margin-left: 14px;
+    font-size: 12px; color: var(--ink-3); font-weight: 500;
+    background: var(--card); border: 1px solid var(--line);
+    padding: 4px 12px; border-radius: 999px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .product-shot img { display: block; width: 100%; height: auto; }
+  .product-shot .caption {
+    font-size: 12px; color: var(--ink-3); font-weight: 600; letter-spacing: 0.3px;
+    text-align: center; padding: 12px; border-top: 1px solid var(--line);
+    text-transform: uppercase;
+  }
+
+  /* Hero glance bar */
+  .glance {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-top: 40px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    overflow: hidden;
+  }
+  .glance .cell { padding: 18px 22px; border-right: 1px solid var(--line); }
+  .glance .cell:last-child { border-right: none; }
+  .glance .k { font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  .glance .v { font-size: 15px; font-weight: 600; margin-top: 4px; color: var(--ink); }
+
+  /* Section */
+  .sec-title {
+    display: flex; align-items: baseline; gap: 14px;
+    margin: 64px 0 6px;
+  }
+  .sec-title .num {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .sec-title h2 {
+    font-size: 26px; line-height: 1.2; margin: 0;
+    font-weight: 700; letter-spacing: -0.4px;
+  }
+  .sec-desc { font-size: 15px; color: #444; margin: 8px 0 26px; max-width: 760px; line-height: 1.6; }
+
+  /* Product advantages — 5 cards */
+  .adv {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  .adv .item {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 22px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .adv .item:hover { border-color: rgba(118, 82, 185, 0.4); transform: translateY(-2px); }
+  .adv .item.wide { grid-column: span 2; }
+  .adv .emoji { font-size: 22px; line-height: 1; margin-bottom: 4px; }
+  .adv .t { font-size: 16px; font-weight: 700; letter-spacing: -0.1px; }
+  .adv .d { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+
+  /* Design problems solved */
+  .prob { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .prob .item {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 24px 22px;
+  }
+  .prob .label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--blue); background: var(--blue-soft);
+    padding: 4px 10px; border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .prob .t { font-size: 17px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.2px; }
+  .prob .d { font-size: 14px; color: #333; line-height: 1.6; margin: 0; }
+
+  /* What this proves — 4 pillars */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .pillar .num {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .pillar .t { font-size: 15px; font-weight: 700; margin: 6px 0 6px; letter-spacing: -0.1px; }
+  .pillar .d { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+
+  /* Outro */
+  .outro {
+    margin-top: 56px;
+    padding: 32px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+  }
+  .outro h3 { margin: 0 0 8px; font-size: 20px; letter-spacing: -0.2px; }
+  .outro p { margin: 0; color: #333; font-size: 15px; line-height: 1.6; }
+  .outro .links { display: flex; flex-direction: column; gap: 6px; font-size: 14px; min-width: 220px; }
+  .outro .links a { color: var(--ink); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .outro .links a:hover { color: var(--blue); border-color: var(--blue); text-decoration: none; }
+  .outro .links a span { color: var(--ink-3); float: right; font-size: 12px; }
+
+  /* Footer */
+  .foot { margin-top: 32px; text-align: center; color: var(--ink-3); font-size: 12px; }
+  .foot .grad-bar {
+    width: 60px; height: 3px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-mid), var(--grad-end));
+    margin: 0 auto 14px;
+  }
+
+  @media (max-width: 820px) {
+    .hero h1 { font-size: 34px; letter-spacing: -0.6px; }
+    .glance { grid-template-columns: repeat(2, 1fr); }
+    .glance .cell { border-right: none; border-bottom: 1px solid var(--line); }
+    .glance .cell:nth-child(odd) { border-right: 1px solid var(--line); }
+    .glance .cell:nth-last-child(-n+2) { border-bottom: none; }
+    .adv, .prob { grid-template-columns: 1fr; }
+    .adv .item.wide { grid-column: span 1; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .outro { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .me { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-mark">W</div>
+      <div class="logo-meta">
+        <div class="ttl">WorkPal · Case Study</div>
+        <div class="sub">Designed by Beibei Zhang · 2026</div>
+      </div>
+    </div>
+    <div class="me">
+      <b>Beibei Zhang</b><br/>
+      Senior Product Designer · 15+ yrs<br/>
+      beibeizhang1122@gmail.com · 415-309-6496<br/>
+      <a href="https://beibeidesign.com">beibeidesign.com</a> · <a href="https://www.linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="kicker"><span class="dot"></span>Case Study · Agentic AI</span>
+    <h1>Designing the interaction protocols for an <span class="grad">agentic AI workspace</span>.</h1>
+    <p>WorkPal combines OpenAI's natural-language fluency with Claude Cowork's task execution into a single project-centered workspace. I designed it end-to-end — establishing the visual and interaction language for a product category that didn't have one yet.</p>
+    <p>This page is the case study: what WorkPal does, the design problems behind it, and what this work proves about how I operate at Staff / Principal level.</p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">View live product →</a>
+      <a class="btn-secondary" href="https://my-workpal.vercel.app/design-system" target="_blank" rel="noopener">Design system →</a>
+    </div>
+
+    <a class="product-shot" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
+      <div class="chrome">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">my-workpal.vercel.app/overview</span>
+      </div>
+      <img src="workpal-hero.png" alt="WorkPal Overview — agent dashboard with daily summary, review queue, and live agent activity" />
+      <div class="caption">WorkPal Overview — Live product · Click to explore</div>
+    </a>
+
+    <div class="glance">
+      <div class="cell">
+        <div class="k">Role</div>
+        <div class="v">End-to-end product design</div>
+      </div>
+      <div class="cell">
+        <div class="k">Scope</div>
+        <div class="v">0→1 · system + surfaces</div>
+      </div>
+      <div class="cell">
+        <div class="k">Stack</div>
+        <div class="v">React · Tailwind · tokens</div>
+      </div>
+      <div class="cell">
+        <div class="k">System</div>
+        <div class="v">36 primitives · 11 principles</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1 — Product advantages -->
+  <div class="sec-title">
+    <span class="num">01 · The product</span>
+  </div>
+  <h2 style="font-size: 26px; line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.4px;">Five things WorkPal does differently.</h2>
+  <p class="sec-desc">Most "AI workspaces" today are either chat windows with a memory layer, or task managers with an LLM bolted on. WorkPal is designed from the assumption that the agent is a first-class collaborator — not a feature.</p>
+
+  <div class="adv">
+    <div class="item wide">
+      <div class="emoji">✨</div>
+      <div class="t">Two best-in-class engines, one workspace.</div>
+      <p class="d">WorkPal combines <b>OpenAI's natural-language capabilities</b> with <b>Claude Cowork's task management</b> — so conversation and execution come from the same surface. No more switching between your favorite chat tool and your favorite task tool to get a single piece of work done.</p>
+    </div>
+    <div class="item">
+      <div class="emoji">📂</div>
+      <div class="t">Project-centered, not chat-centered.</div>
+      <p class="d">Tasks and conversations live inside <b>project folders that share memory</b>. The project remembers what you've already discussed, decided, and done — so the agent doesn't either.</p>
+    </div>
+    <div class="item">
+      <div class="emoji">🤖</div>
+      <div class="t">No mode toggling.</div>
+      <p class="d">The AI <b>determines whether your message is a chat or a task</b>. You don't pick the right mode — you just talk. The system disambiguates intent so the user never has to.</p>
+    </div>
+    <div class="item">
+      <div class="emoji">📊</div>
+      <div class="t">An Overview that closes the loop.</div>
+      <p class="d">A single dashboard shows what every agent is doing right now, plus the surface where they report back. <b>Agentic systems are opaque by default</b> — Overview makes them legible.</p>
+    </div>
+    <div class="item">
+      <div class="emoji">⚖️</div>
+      <div class="t">Human-centered, not just AI-centered.</div>
+      <p class="d">Onboarding and Overview surface the user's <b>personal context — energy, commitments, life-side priorities</b> — so the agent's plan balances work <i>and</i> life, not just throughput.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 — Design problems -->
+  <div class="sec-title" style="margin-top: 72px;">
+    <span class="num">02 · The design problems</span>
+  </div>
+  <h2 style="font-size: 26px; line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.4px;">What I had to invent because nobody had yet.</h2>
+  <p class="sec-desc">Designing for autonomous agents means most of the existing UX vocabulary doesn't apply. There's no precedent for "the AI is doing something on your behalf and may take five minutes." Below are the four hardest problems I solved.</p>
+
+  <div class="prob">
+    <div class="item">
+      <div class="label">Trust &amp; transparency</div>
+      <div class="t">Making autonomous behavior legible.</div>
+      <p class="d">When an AI can act on your behalf, every interaction has to communicate <b>what the system is about to do, what it just did, and what's reversible</b>. I established the visual and interaction language for agent activity — status, scope, consent — so the user always knows where in the loop they are.</p>
+    </div>
+    <div class="item">
+      <div class="label">Intent disambiguation</div>
+      <div class="t">Removing the chat-vs-task split.</div>
+      <p class="d">Most AI workspaces force users to choose between "chat with AI" and "give AI a task." WorkPal hides that decision behind <b>intent classification</b>. I designed the input affordances and the Chat / Tasks / Code modes so it feels like one continuous surface — not three.</p>
+    </div>
+    <div class="item">
+      <div class="label">Memory as a surface</div>
+      <div class="t">Designing the canvas for project memory.</div>
+      <p class="d">Project folders are the architectural primitive — but only useful if the user can <b>see what the agent has remembered</b>. I designed the project page so accumulated context (artifacts, decisions, threads) is visible, browsable, and editable, not buried in a black-box.</p>
+    </div>
+    <div class="item">
+      <div class="label">Day-one design system</div>
+      <div class="t">A system before the product, not after.</div>
+      <p class="d">Every shared component, token, and pattern was defined upfront so new surfaces (Overview, Library, Connectors, Onboarding) ship in the same visual language. <b>36 shared primitives, 11 design principles, full dark mode, tokenized end-to-end</b>. Browseable: <a href="https://my-workpal.vercel.app/design-system" target="_blank" rel="noopener">my-workpal.vercel.app/design-system</a>.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 — What this proves -->
+  <div class="sec-title" style="margin-top: 72px;">
+    <span class="num">03 · What this proves</span>
+  </div>
+  <h2 style="font-size: 26px; line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.4px;">How I operate at Staff / Principal level.</h2>
+  <p class="sec-desc">WorkPal is the work, not a thought piece. It's the most concentrated demonstration of how I show up: hands-on craft, system thinking, 0→1 instinct, and the player-coach mode that holds the bar at every layer.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="num">01</div>
+      <div class="t">Agentic AI, hands-on</div>
+      <div class="d">I build and ship the interaction protocols for AI surfaces — not just write about them. WorkPal is end-to-end my work: hero flow to design tokens.</div>
+    </div>
+    <div class="pillar">
+      <div class="num">02</div>
+      <div class="t">Systems-level thinking</div>
+      <div class="d">36 primitives, 11 principles, full token system, dark mode. Direct lineage to my Tencent cross-product SNS guidelines and Walmart Last Mile platform work.</div>
+    </div>
+    <div class="pillar">
+      <div class="num">03</div>
+      <div class="t">0→1 builder</div>
+      <div class="d">Same instinct that drove Tooride (cofounder/CPO, 5-yr venture). Comfortable defining a category, not just decorating an existing one.</div>
+    </div>
+    <div class="pillar">
+      <div class="num">04</div>
+      <div class="t">Player-coach craft</div>
+      <div class="d">Hands on every surface, every token. This is what Staff / Principal looks like when the AI category is too new to have a playbook.</div>
+    </div>
+  </div>
+
+  <!-- Outro -->
+  <div class="outro">
+    <div>
+      <h3>If your team is building in this space — let's talk.</h3>
+      <p>I'm focused on Staff / Principal / Sr. Manager roles in agentic AI, consumer-scale design, and creative tools — currently looking at Adobe, PayPal/Venmo, and Stripe Agentic Commerce. Happy to walk through any part of this case study live.</p>
+    </div>
+    <div class="links">
+      <a href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">Live product <span>↗</span></a>
+      <a href="https://my-workpal.vercel.app/design-system" target="_blank" rel="noopener">Design system <span>↗</span></a>
+      <a href="https://beibeidesign.com" target="_blank" rel="noopener">Portfolio <span>↗</span></a>
+      <a href="mailto:beibeizhang1122@gmail.com">Email <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="grad-bar"></div>
+    Beibei Zhang · 2026 · Page prepared for hiring teams
+  </div>
+
+</div>
+</body>
+</html>
