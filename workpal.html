@@ -147,9 +147,22 @@
     padding: 0;
     display: flex; flex-direction: column;
     overflow: hidden;
+    position: relative;
+    color: var(--ink); text-decoration: none;
     transition: border-color 0.15s ease, transform 0.15s ease;
   }
-  .adv .item:hover { border-color: rgba(118, 82, 185, 0.4); transform: translateY(-2px); }
+  .adv .item:hover { border-color: rgba(118, 82, 185, 0.4); transform: translateY(-2px); text-decoration: none; }
+  .adv a.item:hover { text-decoration: none; }
+  /* Right arrow on clickable cards */
+  .adv a.item::after {
+    content: "→";
+    position: absolute;
+    top: 20px; right: 22px;
+    font-size: 18px; line-height: 1; font-weight: 600;
+    color: var(--ink-3);
+    transition: transform 0.18s ease, color 0.18s ease;
+  }
+  .adv a.item:hover::after { color: var(--grad-start); transform: translateX(3px); }
   .adv .item.wide { grid-column: span 2; }
   .adv .body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
   .adv .emoji { font-size: 22px; line-height: 1; margin-bottom: 4px; }
@@ -533,29 +546,29 @@
   <h2 style="font-size: 26px; line-height: 1.2; margin: 0 0 26px; font-weight: 700; letter-spacing: -0.4px;">Three things WorkPal does differently.</h2>
 
   <div class="adv">
-    <div class="item">
+    <a class="item" href="https://my-workpal.vercel.app/project/proj-1" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">✨</div>
         <div class="t">Chat + tasks in one project</div>
         <p class="d"><b>Under one project, chat and tasks share memory.</b> Integrates the best conversation (OpenAI) and the best agent (Claude Cowork) on the market — unified.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a class="item" href="https://my-workpal.vercel.app/" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">🤖</div>
         <div class="t">AI handles the routing</div>
         <p class="d">A product call: <b>users shouldn't have to pick chat vs. task.</b> The AI classifies intent from what you type — no mode toggling.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="item wide">
+    <a class="item wide" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">📊</div>
         <div class="t">Overview page</div>
         <p class="d"><b>One glance</b> at your agent's progress across every project.</p>
       </div>
-    </div>
+    </a>
   </div>
 
   <!-- Demo availability note -->
@@ -568,14 +581,32 @@
   <div class="milestones-head">
     <span class="num">Milestones</span>
   </div>
-  <h3 style="margin: 0 0 22px; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Six shipped feature sets, six product decisions.</h3>
+  <h3 style="margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Eight phases in 30 days — research to ship.</h3>
+  <p class="milestones-sub">Mar 26 → Apr 25, 2026.</p>
 
   <div class="milestones">
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
           <span class="ms-num">01</span>
-          <span class="ms-date">2025 Q4</span>
+          <span class="ms-date">Mar 26, 2026</span>
+        </div>
+        <div class="ms-title">Research &amp; design exploration</div>
+        <p class="ms-body"><b>Two research decks</b> on agentic AI UI/UX patterns — competitive analysis + visual pattern study. Then <b>three rounds of concept exploration</b> (dashboard directions, product proposals, style references). The shape WorkPal eventually took came from this work.</p>
+        <div class="ms-tags">
+          <span class="ms-tag">Competitive Research</span>
+          <span class="ms-tag">Design Exploration</span>
+          <span class="ms-tag">Concept Proposals</span>
+          <span class="ms-tag">Pattern Study</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ms">
+      <div class="ms-card">
+        <div class="ms-meta">
+          <span class="ms-num">02</span>
+          <span class="ms-date">Apr 6, 2026</span>
         </div>
         <div class="ms-title">Foundation — design system &amp; Figma pipeline</div>
         <p class="ms-body">Three-panel shell, first design tokens, dark mode, and a primitives library. Figma → Tailwind pipeline, tokenized end-to-end. The design system that every later surface fits into.</p>
@@ -591,8 +622,8 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">02</span>
-          <span class="ms-date">2026 Q1</span>
+          <span class="ms-num">03</span>
+          <span class="ms-date">Apr 7, 2026</span>
         </div>
         <div class="ms-title">Product direction + frontend architecture</div>
         <p class="ms-body">A new product exploration as designer-PM. <b>Under a project foundation, chat and tasks share memory.</b> The key decision: <b>integrate the best chat experience and the best agent experience on the market.</b> Then built the frontend architecture to hold this shape.</p>
@@ -608,11 +639,11 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">03</span>
-          <span class="ms-date">2026 Q1</span>
+          <span class="ms-num">04</span>
+          <span class="ms-date">Apr 16, 2026</span>
         </div>
         <div class="ms-title">Connect OpenAI — streaming chat, integrations, memory</div>
-        <p class="ms-body">Integrated OpenAI GPT streaming over SSE. Designed the animated token bubble, feedback bar, and a <b>mode-switching composer (chat / task)</b> — the first version before Phase 05 unified it. Then Gmail + Calendar OAuth, structured tool-call cards, and persistent cross-session memory.</p>
+        <p class="ms-body">Integrated OpenAI GPT streaming over SSE. Designed the animated token bubble, feedback bar, and a <b>mode-switching composer (chat / task)</b> — the first version before Phase 06 unified it. Then Gmail + Calendar OAuth, structured tool-call cards, and persistent cross-session memory.</p>
         <div class="ms-tags">
           <span class="ms-tag">Streaming UX</span>
           <span class="ms-tag">Trust-Gated OAuth</span>
@@ -625,8 +656,8 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">04</span>
-          <span class="ms-date">Apr 2026</span>
+          <span class="ms-num">05</span>
+          <span class="ms-date">Apr 18, 2026</span>
         </div>
         <div class="ms-title">Connect Claude Code — real agent, real files, real Undo</div>
         <p class="ms-body">Wired the UI into Claude Agent SDK. The AI now edits local files with per-action permission prompts, every write auto-commits to git, and <b>Undo is a real <code>git reset --hard HEAD~1</code></b>. The agent actually <i>does</i> things — safely and reversibly.</p>
@@ -642,8 +673,8 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">05</span>
-          <span class="ms-date">Apr 2026</span>
+          <span class="ms-num">06</span>
+          <span class="ms-date">Apr 19, 2026</span>
         </div>
         <div class="ms-title">AI routes intent — the big UX change</div>
         <p class="ms-body">The big UX change I made as designer-PM: <b>users shouldn't pick chat vs. task — the AI classifies intent from the input.</b> Mode overhead drops to zero. Ships with single-input composer, auto-opening inspector, Promote-to-Project, and a 4-kind PermissionPrompt (file-write / read / command / external-url).</p>
@@ -656,20 +687,38 @@
       </div>
     </div>
 
-    <div class="ms now">
+    <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">06</span>
-          <span class="ms-date">Apr 2026</span>
-          <span class="ms-now">Now</span>
+          <span class="ms-num">07</span>
+          <span class="ms-date">Apr 23, 2026</span>
         </div>
-        <div class="ms-title">Cloud sync — WorkPal across devices</div>
-        <p class="ms-body">Current work: <b>cloud sync packaging</b> so project state, memory, and agents travel with the user across laptop, desktop, and mobile. Same agents, same context, everywhere.</p>
+        <div class="ms-title">Cross-device sync — chats &amp; projects via Supabase</div>
+        <p class="ms-body">Chats and projects <b>sync via Supabase</b> so anything you say in the browser shows up on every device. Memory and agent execution intentionally stayed local-first — that became Phase 08's design problem to solve.</p>
         <div class="ms-tags">
           <span class="ms-tag">Sync Architecture</span>
           <span class="ms-tag">Cross-Device UX</span>
-          <span class="ms-tag">Cloud Packaging</span>
-          <span class="ms-tag">In Progress</span>
+          <span class="ms-tag">Supabase RLS</span>
+          <span class="ms-tag">Local-First Decision</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ms now">
+      <div class="ms-card">
+        <div class="ms-meta">
+          <span class="ms-num">08</span>
+          <span class="ms-date">Apr 24, 2026</span>
+          <span class="ms-now">Now</span>
+        </div>
+        <div class="ms-title">Web + Local Agent — web UI editing your local Mac</div>
+        <p class="ms-body"><b>Browsers can't touch your local files.</b> So I shipped a small Mac menu-bar app — the web UI calls it to do the file, git, and agent work. One-click install, auto-update from GitHub.</p>
+        <div class="ms-tags">
+          <span class="ms-tag">Hybrid Web + Native</span>
+          <span class="ms-tag">Onboarding UX</span>
+          <span class="ms-tag">Install Flow</span>
+          <span class="ms-tag">Settings Card Design</span>
+          <span class="ms-tag">Menu-Bar App</span>
         </div>
       </div>
     </div>
