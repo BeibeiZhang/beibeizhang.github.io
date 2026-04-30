@@ -4,23 +4,53 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>WorkPal — A case study by Beibei Zhang</title>
+<title>Agent Interaction Protocols</title>
 <style>
   :root {
-    /* WorkPal brand tokens (from product design system) */
-    --ink: #142740;
-    --ink-2: rgba(20, 39, 64, 0.7);
-    --ink-3: rgba(20, 39, 64, 0.4);
-    --bg: #F7F7F8;
-    --card: #FFFFFF;
-    --line: #E8E8E8;
-    --blue: #3171FF;
-    --blue-soft: rgba(49, 113, 255, 0.1);
+    /* WorkPal canonical tokens — 1:1 with product src/index.css */
 
-    /* Brand gradient — used sparingly per WorkPal design principle (1–2% page budget) */
-    --grad-start: #7652B9;
-    --grad-mid:   #B46470;
-    --grad-end:   #CA9D8C;
+    /* Surface & text */
+    --color-text-primary:    #142740;
+    --color-text-secondary:  rgba(20, 39, 64, 0.6);
+    --color-text-tertiary:   rgba(20, 39, 64, 0.4);
+    --color-bg-page:         #F7F7F8;
+    --color-card-panel-bg:   #FFFFFF;
+    --color-bg-message:      rgba(20, 39, 64, 0.05);
+    --color-stroke-outline:  #E8E8E8;
+
+    /* Semantic accents */
+    --color-accent-blue:        #3171FF;
+    --color-accent-blue-faint:  rgba(49, 113, 255, 0.1);
+    --color-accent-green:       #028901;
+    --color-accent-green-bg:    rgba(2, 137, 1, 0.1);
+    --color-accent-violet:      #6B54E6;
+
+    /* Brand gradient (1–2% page budget — focal point only) */
+    --brand-grad-start: #7652B9;
+    --brand-grad-mid:   #B46470;
+    --brand-grad-end:   #CA9D8C;
+
+    /* Radius scale */
+    --radius-sm:    8px;
+    --radius-md:   12px;
+    --radius-lg:   16px;
+    --radius-pill: 9999px;
+
+    /* Canonical card hover shadow (DS §1.5a) */
+    --shadow-card-hover: 0px 5px 8px 0px rgba(3, 65, 133, 0.17);
+
+    /* Legacy aliases — short names used through this file */
+    --ink:        var(--color-text-primary);
+    --ink-2:      var(--color-text-secondary);
+    --ink-3:      var(--color-text-tertiary);
+    --bg:         var(--color-bg-page);
+    --card:       var(--color-card-panel-bg);
+    --line:       var(--color-stroke-outline);
+    --blue:       var(--color-accent-blue);
+    --blue-soft:  var(--color-accent-blue-faint);
+    --grad-start: var(--brand-grad-start);
+    --grad-mid:   var(--brand-grad-mid);
+    --grad-end:   var(--brand-grad-end);
   }
   * { box-sizing: border-box; }
   html, body {
@@ -37,7 +67,7 @@
 
   /* Header */
   .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
-  .logo-row { display: flex; align-items: center; gap: 14px; }
+  .logo-row { display: flex; align-items: center; gap: 16px; }
   .logo-mark {
     width: 38px; height: 38px;
     border-radius: 8px;
@@ -46,9 +76,9 @@
     flex-shrink: 0;
   }
   .logo-mark svg { display: block; width: 100%; height: 100%; }
-  .logo-meta .ttl { font-weight: 700; font-size: 18px; letter-spacing: -0.2px; }
-  .logo-meta .sub { font-weight: 600; font-size: 12px; color: var(--ink-2); letter-spacing: 0.3px; text-transform: uppercase; }
-  .me { text-align: right; font-size: 13px; color: var(--ink-2); }
+  .logo-meta .ttl { font-weight: 700; font-size: 16px; line-height: 22px; letter-spacing: -0.2px; }
+  .logo-meta .sub { font-weight: 600; font-size: 12px; line-height: 16px; color: var(--ink-2); letter-spacing: 0.3px; text-transform: uppercase; }
+  .me { text-align: right; font-size: 14px; line-height: 22px; color: var(--ink-2); }
   .me b { color: var(--ink); font-weight: 600; }
 
   /* Hero */
@@ -58,26 +88,26 @@
     font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
     color: var(--ink-2);
     background: var(--card); border: 1px solid var(--line);
-    padding: 6px 12px; border-radius: 999px;
-    margin-bottom: 22px;
+    padding: 8px 12px; border-radius: var(--radius-pill);
+    margin-bottom: 24px;
   }
   .hero .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--grad-start), var(--grad-end)); }
   .hero h1 {
-    font-size: 48px; line-height: 1.1; margin: 0 0 20px;
-    font-weight: 700; letter-spacing: -1px;
+    font-size: 40px; line-height: 48px; margin: 0 0 20px;
+    font-weight: 700; letter-spacing: -0.5px;
     max-width: 880px;
   }
   .hero h1 .grad {
     background: linear-gradient(90deg, var(--grad-start), var(--grad-mid), var(--grad-end));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero .lede { font-size: 18px; color: var(--ink-2); font-weight: 500; margin: 0 0 24px; max-width: 760px; line-height: 1.55; }
-  .hero p { font-size: 17px; color: #2c2c2c; margin: 0 0 22px; max-width: 760px; line-height: 1.6; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero .lede { font-size: 16px; line-height: 32px; color: var(--ink-2); font-weight: 400; margin: 0 0 24px; max-width: 760px; }
+  .hero p { font-size: 16px; line-height: 32px; color: var(--ink); margin: 0 0 24px; max-width: 760px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
   .btn-primary {
     background: linear-gradient(90deg, var(--grad-start), var(--grad-mid), var(--grad-end));
-    color: white; font-weight: 600; font-size: 14px;
-    padding: 11px 20px; border-radius: 4px;
+    color: white; font-weight: 700; font-size: 14px; line-height: 22px;
+    padding: 12px 20px; border-radius: 4px;
     box-shadow: 0 4px 14px rgba(118, 82, 185, 0.25);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
@@ -88,7 +118,7 @@
     background: transparent; border: 1px solid var(--line);
     color: var(--ink);
     font-size: 14px; line-height: 22px; font-weight: 700;
-    padding: 10px 20px; border-radius: 4px;
+    padding: 12px 20px; border-radius: 4px;
     transition: background 0.15s ease;
   }
   .btn-secondary:hover {
@@ -115,50 +145,50 @@
   .glance {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
     margin-top: 40px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
     overflow: hidden;
   }
-  .glance .cell { padding: 18px 22px; border-right: 1px solid var(--line); }
+  .glance .cell { padding: 16px 24px; border-right: 1px solid var(--line); }
   .glance .cell:last-child { border-right: none; }
-  .glance .k { font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
-  .glance .v { font-size: 15px; font-weight: 600; margin-top: 4px; color: var(--ink); }
+  .glance .k { font-size: 11px; line-height: 1; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  .glance .v { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 4px; color: var(--ink); }
 
   /* Section */
   .sec-title {
-    display: flex; align-items: baseline; gap: 14px;
-    margin: 64px 0 6px;
+    display: flex; align-items: baseline; gap: 16px;
+    margin: 64px 0 8px;
   }
   .sec-title .num {
     font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
     color: var(--ink-3);
   }
   .sec-title h2 {
-    font-size: 26px; line-height: 1.2; margin: 0;
+    font-size: 22px; line-height: 1.25; margin: 0;
     font-weight: 700; letter-spacing: -0.4px;
   }
-  .sec-desc { font-size: 15px; color: #444; margin: 8px 0 26px; max-width: 760px; line-height: 1.6; }
+  .sec-desc { font-size: 16px; line-height: 32px; color: var(--ink-2); margin: 8px 0 24px; max-width: 760px; }
 
   /* Product advantages — 3 cards with UI mockups */
   .adv {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
   }
   .adv .item {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    background: var(--card); border-radius: var(--radius-lg);
     padding: 0;
     display: flex; flex-direction: column;
     overflow: hidden;
     position: relative;
     color: var(--ink); text-decoration: none;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .adv .item:hover { border-color: rgba(118, 82, 185, 0.4); transform: translateY(-2px); text-decoration: none; }
+  .adv .item:hover { transform: translateY(-2px); text-decoration: none; box-shadow: var(--shadow-card-hover); }
   .adv a.item:hover { text-decoration: none; }
   /* Right arrow on clickable cards */
   .adv a.item::after {
     content: "→";
     position: absolute;
     top: 20px; right: 22px;
-    font-size: 18px; line-height: 1; font-weight: 600;
+    font-size: 22px; line-height: 1; font-weight: 600;
     color: var(--ink-3);
     transition: transform 0.18s ease, color 0.18s ease;
   }
@@ -167,23 +197,23 @@
   .adv a.item.demo-only::after {
     content: "Live demo →";
     top: 16px; right: 16px;
-    font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--grad-start);
-    padding: 5px 10px;
-    background: rgba(118, 82, 185, 0.1);
-    border-radius: 999px;
+    color: var(--blue);
+    padding: 4px 12px;
+    background: var(--blue-soft);
+    border-radius: var(--radius-pill);
   }
   .adv a.item.demo-only:hover::after {
-    background: rgba(118, 82, 185, 0.18);
-    color: var(--grad-start);
+    background: rgba(49, 113, 255, 0.15);
+    color: var(--blue);
     transform: none;
   }
   .adv .item.wide { grid-column: span 2; }
-  .adv .body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
+  .adv .body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 8px; }
   .adv .emoji { font-size: 22px; line-height: 1; margin-bottom: 4px; }
   .adv .t { font-size: 16px; font-weight: 700; letter-spacing: -0.1px; }
-  .adv .d { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+  .adv .d { font-size: 14px; line-height: 22px; color: var(--ink-2); margin: 0; }
 
   /* UI mockups — CSS-only illustrations matching WorkPal design system */
   .mockup {
@@ -200,21 +230,21 @@
     border-bottom: 1px solid rgba(20, 39, 64, 0.08);
   }
   .mockup .chrome .cdot { width: 7px; height: 7px; border-radius: 50%; background: rgba(20, 39, 64, 0.18); }
-  .mockup .chrome .title { font-size: 10.5px; font-weight: 600; color: var(--ink-2); margin-left: 6px; letter-spacing: 0.1px; }
+  .mockup .chrome .title { font-size: 11px; font-weight: 600; color: var(--ink-2); margin-left: 6px; letter-spacing: 0.1px; }
 
   /* Mockup 1 — chat + tasks in one stream */
   .m1-stream { display: flex; flex-direction: column; gap: 8px; }
   .m1-chat {
     align-self: flex-start;
-    background: white; border-radius: 10px 10px 10px 2px;
-    padding: 8px 10px; font-size: 11px; color: var(--ink);
+    background: var(--card); border-radius: 12px 12px 12px 2px;
+    padding: 8px 12px; font-size: 11px; color: var(--ink);
     max-width: 82%;
     box-shadow: 0 1px 2px rgba(20, 39, 64, 0.05);
   }
-  .m1-chat .who { font-size: 9.5px; font-weight: 700; color: var(--grad-start); margin-bottom: 2px; letter-spacing: 0.2px; }
+  .m1-chat .who { font-size: 11px; font-weight: 700; color: var(--color-accent-violet); margin-bottom: 2px; letter-spacing: 0.2px; }
   .m1-task {
     align-self: flex-start;
-    background: white; border: 1px solid var(--line);
+    background: var(--card); border: 1px solid var(--line);
     border-left: 3px solid var(--grad-start);
     border-radius: 8px; padding: 8px 10px;
     display: flex; align-items: center; gap: 8px;
@@ -226,16 +256,16 @@
     width: 12px; height: 12px; border-radius: 3px;
     background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
     display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 9px; font-weight: 800; flex-shrink: 0;
+    color: white; font-size: 11px; font-weight: 800; flex-shrink: 0;
   }
   .m1-task .bar { flex: 1; height: 3px; background: rgba(20, 39, 64, 0.08); border-radius: 2px; overflow: hidden; }
-  .m1-task .bar i { display: block; height: 100%; width: 62%; background: linear-gradient(90deg, var(--grad-start), var(--grad-end)); }
-  .m1-task .pct { font-size: 9.5px; font-weight: 700; color: var(--ink-2); }
+  .m1-task .bar i { display: block; height: 100%; width: 62%; background: var(--blue); }
+  .m1-task .pct { font-size: 11px; font-weight: 700; color: var(--ink-2); }
 
   /* Mockup 2 — AI intent detection */
   .m2-input {
-    background: white; border: 1px solid var(--line);
-    border-radius: 10px; padding: 10px 12px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius-md); padding: 10px 12px;
     font-size: 11px; color: var(--ink);
     box-shadow: 0 1px 2px rgba(20, 39, 64, 0.05);
     display: flex; align-items: center; gap: 8px;
@@ -244,29 +274,29 @@
   @keyframes blink { 50% { opacity: 0; } }
   .m2-detect {
     display: flex; align-items: center; gap: 6px;
-    font-size: 10px; color: var(--ink-2);
+    font-size: 11px; color: var(--ink-2);
     padding-left: 6px;
   }
   .m2-detect .pill {
     display: inline-flex; align-items: center; gap: 4px;
     background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
     color: white; font-weight: 700;
-    padding: 3px 8px; border-radius: 999px; font-size: 9.5px;
+    padding: 3px 8px; border-radius: var(--radius-pill); font-size: 11px;
     letter-spacing: 0.3px;
   }
   .m2-routes { display: flex; gap: 8px; margin-top: 2px; }
   .m2-route {
     flex: 1;
-    background: white; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm);
     padding: 8px 10px;
-    font-size: 10px; color: var(--ink-3); text-align: center;
+    font-size: 11px; color: var(--ink-3); text-align: center;
     font-weight: 600;
     transition: all 0.2s;
   }
   .m2-route.active {
-    border-color: var(--grad-start);
-    background: linear-gradient(135deg, rgba(118, 82, 185, 0.08), rgba(202, 157, 140, 0.08));
-    color: var(--ink); box-shadow: 0 0 0 3px rgba(118, 82, 185, 0.08);
+    border-color: var(--blue);
+    background: var(--blue-soft);
+    color: var(--blue); box-shadow: 0 0 0 3px rgba(49, 113, 255, 0.08);
   }
 
   /* Mockup 3 — Overview grid */
@@ -274,18 +304,18 @@
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
   }
   .m3-tile {
-    background: white; border: 1px solid var(--line);
-    border-radius: 8px; padding: 10px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); padding: 12px;
     box-shadow: 0 1px 2px rgba(20, 39, 64, 0.04);
   }
   .m3-tile .head {
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 8px;
   }
-  .m3-tile .name { font-size: 10.5px; font-weight: 700; color: var(--ink); }
+  .m3-tile .name { font-size: 11px; font-weight: 700; color: var(--ink); }
   .m3-tile .status {
     width: 6px; height: 6px; border-radius: 50%;
-    background: #22c55e; box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.18);
+    background: var(--color-accent-green); box-shadow: 0 0 0 2px var(--color-accent-green-bg);
   }
   .m3-tile .status.idle { background: var(--ink-3); box-shadow: none; }
   .m3-tile .line1 {
@@ -301,13 +331,13 @@
   }
   .m3-tile .progress i {
     display: block; height: 100%;
-    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+    background: var(--blue);
   }
 
   /* Milestones timeline — 5 phases */
   .milestones-head {
-    margin-top: 56px; margin-bottom: 6px;
-    display: flex; align-items: baseline; gap: 14px;
+    margin-top: 64px; margin-bottom: 8px;
+    display: flex; align-items: baseline; gap: 16px;
   }
   .milestones-head .num {
     font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
@@ -317,53 +347,65 @@
     margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;
   }
   .milestones-sub {
-    font-size: 14px; color: var(--ink-2); line-height: 1.6;
-    margin: 6px 0 22px; max-width: 720px;
+    font-size: 14px; line-height: 22px; color: var(--ink-2);
+    margin: 8px 0 24px; max-width: 720px;
   }
   .milestones {
     position: relative;
-    padding-left: 28px;
+    padding-left: 60px;
   }
   .milestones::before {
-    content: ""; position: absolute; left: 9px; top: 6px; bottom: 8px;
-    width: 2px; background: linear-gradient(180deg, var(--grad-start), var(--grad-mid), var(--grad-end), rgba(202, 157, 140, 0.2));
-    border-radius: 2px;
+    content: ""; position: absolute; left: 18.5px; top: 20px; bottom: 20px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--grad-start) 0%, var(--grad-mid) 50%, var(--grad-end) 100%);
   }
   .ms {
-    position: relative; padding: 0 0 24px 0;
+    position: relative; padding: 0 0 16px 0;
   }
   .ms:last-child { padding-bottom: 0; }
-  .ms::before {
-    content: ""; position: absolute; left: -25px; top: 8px;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--card);
-    border: 2px solid var(--grad-start);
-    box-shadow: 0 0 0 3px var(--bg);
-  }
-  .ms.now::before {
-    background: var(--grad-start);
-    border-color: var(--grad-start);
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(118, 82, 185, 0.18);
+  /* Each circle borrows the gradient line's color at its vertical position
+     — solid color per circle, so overall the timeline reads as one gradient. */
+  .ms:nth-child(1) .ms-num { border-color: #7652B9; color: #7652B9; }
+  .ms:nth-child(2) .ms-num { border-color: #8557A7; color: #8557A7; }
+  .ms:nth-child(3) .ms-num { border-color: #955B95; color: #955B95; }
+  .ms:nth-child(4) .ms-num { border-color: #A56082; color: #A56082; }
+  .ms:nth-child(5) .ms-num { border-color: #B46470; color: #B46470; }
+  .ms:nth-child(6) .ms-num { border-color: #BA7277; color: #BA7277; }
+  .ms:nth-child(7) .ms-num { border-color: #BF817E; color: #BF817E; }
+  .ms:nth-child(8) .ms-num { border-color: #C58F85; color: #C58F85; }
+  .ms:nth-child(9) .ms-num { border-color: #CA9D8C; color: #CA9D8C; }
+
+  .ms.now .ms-num {
+    background: #CA9D8C;
+    color: white;
+    border-color: #CA9D8C;
+    box-shadow: 0 0 0 4px rgba(202, 157, 140, 0.22);
     animation: ms-now-pulse 1.8s ease-in-out infinite;
   }
   @keyframes ms-now-pulse {
-    0%, 100% { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(118, 82, 185, 0.18); }
-    50%      { box-shadow: 0 0 0 3px var(--bg), 0 0 0 7px rgba(118, 82, 185, 0.28); }
+    0%, 100% { box-shadow: 0 0 0 4px rgba(202, 157, 140, 0.22); }
+    50%      { box-shadow: 0 0 0 6px rgba(202, 157, 140, 0.34); }
   }
   .ms-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 20px 22px 18px;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px 16px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
   }
-  .ms-card:hover { border-color: rgba(118, 82, 185, 0.4); transform: translateY(-1px); }
+  .ms-card:hover { border-color: rgba(118, 82, 185, 0.32); transform: translateY(-1px); }
   .ms-meta {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 10px;
   }
   .ms-num {
-    font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
-    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    position: absolute; left: -60px; top: 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    font-size: 15px; font-weight: 700; letter-spacing: 0;
+    color: var(--ink-2);
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 50%;
+    z-index: 1;
   }
   .ms-date {
     font-size: 11px; font-weight: 700; color: var(--ink-3); letter-spacing: 0.3px;
@@ -371,9 +413,9 @@
   }
   .ms-now {
     display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10px; font-weight: 800; letter-spacing: 0.4px;
-    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
-    color: white; padding: 2px 8px; border-radius: 999px; text-transform: uppercase;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+    background: var(--blue);
+    color: white; padding: 4px 8px; border-radius: var(--radius-pill); text-transform: uppercase;
   }
   .ms-now::before {
     content: ""; width: 6px; height: 6px; border-radius: 50%;
@@ -381,47 +423,47 @@
   }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
   .ms-title {
-    font-size: 17px; font-weight: 700; letter-spacing: -0.2px;
+    font-size: 16px; line-height: 22px; font-weight: 700; letter-spacing: -0.2px;
     margin: 0 0 8px; color: var(--ink);
   }
-  .ms-title .cn { color: var(--ink-2); font-weight: 600; font-size: 15px; }
+  .ms-title .cn { color: var(--ink-2); font-weight: 600; font-size: 14px; line-height: 22px; }
   .ms-body {
-    font-size: 14px; color: #333; line-height: 1.6; margin: 0 0 6px;
+    font-size: 14px; line-height: 22px; color: var(--ink); margin: 0 0 6px;
   }
-  .ms-body.cn { color: var(--ink-2); font-size: 13px; margin-bottom: 12px; }
+  .ms-body.cn { color: var(--ink-2); font-size: 14px; margin-bottom: 12px; }
   .ms-body code {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12.5px; background: var(--bg); padding: 1px 6px;
+    font-size: 12px; background: var(--bg); padding: 0 4px;
     border: 1px solid var(--line); border-radius: 4px; color: var(--ink);
   }
   .ms-tags {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
   }
   .ms-tag {
     font-size: 11px; font-weight: 600; color: var(--ink-2);
     background: var(--bg); border: 1px solid var(--line);
-    padding: 3px 9px; border-radius: 999px;
+    padding: 4px 12px; border-radius: var(--radius-pill);
   }
 
-  /* Demo availability note */
+  /* Demo availability note — InsightCard pattern (violet accent) */
   .demo-note {
-    margin-top: 18px;
-    background: linear-gradient(135deg, rgba(118, 82, 185, 0.06), rgba(202, 157, 140, 0.06));
-    border: 1px solid rgba(118, 82, 185, 0.22);
-    border-radius: 12px;
+    margin-top: 16px;
+    background: var(--card);
+    border-left: 3px solid var(--color-accent-violet);
+    border-radius: var(--radius-md);
     padding: 16px 20px;
-    display: flex; align-items: flex-start; gap: 14px;
+    display: flex; align-items: flex-start; gap: 16px;
   }
-  .demo-note .icon { font-size: 18px; line-height: 1.3; flex-shrink: 0; }
-  .demo-note p { margin: 0; font-size: 14px; color: var(--ink); line-height: 1.55; }
+  .demo-note .icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .demo-note p { margin: 0; font-size: 14px; line-height: 22px; color: var(--ink); }
   .demo-note b { color: var(--ink); font-weight: 600; }
   .demo-note a { color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--blue-soft); }
 
   /* Design problems solved */
   .prob { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .prob .item {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 24px 24px 22px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 24px;
   }
   .prob .label {
     display: inline-flex; align-items: center; gap: 6px;
@@ -430,33 +472,32 @@
     padding: 4px 10px; border-radius: 999px;
     margin-bottom: 12px;
   }
-  .prob .t { font-size: 17px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.2px; }
-  .prob .d { font-size: 14px; color: #333; line-height: 1.6; margin: 0; }
+  .prob .t { font-size: 16px; line-height: 22px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.2px; }
+  .prob .d { font-size: 14px; line-height: 22px; color: var(--ink); margin: 0; }
 
   /* What this proves — 4 pillars */
-  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .pillar { background: var(--card); border-radius: var(--radius-lg); padding: 20px; }
   .pillar .num {
     font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
-    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: var(--ink-3);
   }
-  .pillar .t { font-size: 15px; font-weight: 700; margin: 6px 0 6px; letter-spacing: -0.1px; }
-  .pillar .d { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+  .pillar .t { font-size: 16px; line-height: 22px; font-weight: 700; margin: 8px 0; letter-spacing: -0.1px; }
+  .pillar .d { font-size: 14px; line-height: 22px; color: var(--ink-2); }
 
   /* Outro */
   .outro {
-    margin-top: 56px;
+    margin-top: 64px;
     padding: 32px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-    display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+    background: var(--card); border-radius: var(--radius-lg);
+    display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
   }
-  .outro h3 { margin: 0 0 8px; font-size: 20px; letter-spacing: -0.2px; }
-  .outro p { margin: 0; color: #333; font-size: 15px; line-height: 1.6; }
-  .outro .links { display: flex; flex-direction: column; gap: 6px; font-size: 14px; min-width: 220px; }
+  .outro h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.25; font-weight: 700; letter-spacing: -0.4px; }
+  .outro p { margin: 0; color: var(--ink); font-size: 16px; line-height: 32px; }
+  .outro .links { display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 22px; min-width: 220px; }
   .outro .links a { color: var(--ink); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
   .outro .links a:hover { color: var(--blue); border-color: var(--blue); text-decoration: none; }
-  .outro .links a span { color: var(--ink-3); float: right; font-size: 12px; }
+  .outro .links a span { color: var(--ink-3); float: right; font-size: 12px; line-height: 16px; }
 
   /* Footer */
   .foot { margin-top: 32px; text-align: center; color: var(--ink-3); font-size: 12px; }
@@ -467,7 +508,7 @@
   }
 
   @media (max-width: 820px) {
-    .hero h1 { font-size: 34px; letter-spacing: -0.6px; }
+    .hero h1 { font-size: 40px; line-height: 48px; letter-spacing: -0.5px; }
     .glance { grid-template-columns: repeat(2, 1fr); }
     .glance .cell { border-right: none; border-bottom: 1px solid var(--line); }
     .glance .cell:nth-child(odd) { border-right: 1px solid var(--line); }
@@ -529,11 +570,11 @@
   <!-- Hero -->
   <section class="hero">
     <a class="product-shot" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">
-      <img src="workpal-hero.jpg" alt="WorkPal 2.0 — Chat + tasks in one project, voice-interruptible chat, selective task output, overview page." />
+      <img src="workpal-hero.jpg" alt="WorkPal 2.0 — Chat + Tasks in the Same Project, Voice-Enabled Rich Input, Selective Knowledge Output, Overview page." />
     </a>
 
     <span class="kicker"><span class="dot"></span>Case Study · Agentic AI</span>
-    <h1>Designing the interaction protocols for an <span class="grad">agentic AI workspace</span>.</h1>
+    <h1>Agent <span class="grad">Interaction Protocols</span>.</h1>
 
     <div class="cta-row">
       <a class="btn-primary" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">Try the live product →</a>
@@ -564,38 +605,38 @@
   <div class="sec-title">
     <span class="num">01 · The product</span>
   </div>
-  <h2 style="font-size: 26px; line-height: 1.2; margin: 0 0 26px; font-weight: 700; letter-spacing: -0.4px;">Four things WorkPal does differently.</h2>
+  <h2 style="font-size: 22px; line-height: 1.25; margin: 0 0 24px; font-weight: 700; letter-spacing: -0.4px;">Four things WorkPal does differently.</h2>
 
   <div class="adv">
     <a class="item" href="https://my-workpal.vercel.app/project/proj-1" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">✨</div>
-        <div class="t">Chat + tasks in one project</div>
-        <p class="d">Chat (OpenAI Model) and Tasks (Anthropic Agent) share the same project memory.</p>
+        <div class="t">Chat + Tasks in the Same Project</div>
+        <p class="d">Chat (OpenAI models) and Tasks (Anthropic agents) share the same project memory—keeping conversation and execution seamlessly connected.</p>
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">🎤</div>
-        <div class="t">Voice-interruptible Chat</div>
-        <p class="d">You can interrupt anytime with voice and add more materials during conversation.</p>
+        <div class="t">Voice-Enabled Rich Input</div>
+        <p class="d">In voice mode, you can add rich inputs anytime—text, images, or files—without breaking the flow.</p>
       </div>
     </a>
 
     <a class="item demo-only" href="mailto:beibeizhang1122@gmail.com?subject=WorkPal%20live%20demo" rel="noopener">
       <div class="body">
         <div class="emoji">📤</div>
-        <div class="t">Selective Task Output</div>
-        <p class="d">You can selectively merge high-quality task results into your designated documents as knowledge for future tasks.</p>
+        <div class="t">Selective Knowledge Output</div>
+        <p class="d">Merge high-quality task results into your documents—turning outputs into reusable knowledge for future tasks.</p>
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">
       <div class="body">
         <div class="emoji">📊</div>
-        <div class="t">Overview page</div>
-        <p class="d">One glance at your agent's progress across every project.</p>
+        <div class="t">Overview Page</div>
+        <p class="d">Get a clear view of your agent's progress across all projects—at a glance.</p>
       </div>
     </a>
   </div>
@@ -611,7 +652,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">01</span>
+          <span class="ms-num">1</span>
           <span class="ms-date">Mar 26, 2026</span>
         </div>
         <div class="ms-title">Research &amp; design exploration</div>
@@ -628,7 +669,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">02</span>
+          <span class="ms-num">2</span>
           <span class="ms-date">Apr 6, 2026</span>
         </div>
         <div class="ms-title">Foundation — design system &amp; Figma pipeline</div>
@@ -645,7 +686,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">03</span>
+          <span class="ms-num">3</span>
           <span class="ms-date">Apr 7, 2026</span>
         </div>
         <div class="ms-title">Product direction + frontend architecture</div>
@@ -662,7 +703,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">04</span>
+          <span class="ms-num">4</span>
           <span class="ms-date">Apr 16, 2026</span>
         </div>
         <div class="ms-title">Connect OpenAI — streaming chat, integrations, memory</div>
@@ -679,7 +720,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">05</span>
+          <span class="ms-num">5</span>
           <span class="ms-date">Apr 18, 2026</span>
         </div>
         <div class="ms-title">Connect Claude Code — real agent, real files, real Undo</div>
@@ -696,7 +737,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">06</span>
+          <span class="ms-num">6</span>
           <span class="ms-date">Apr 19, 2026</span>
         </div>
         <div class="ms-title">AI routes intent — the big UX change</div>
@@ -713,7 +754,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">07</span>
+          <span class="ms-num">7</span>
           <span class="ms-date">Apr 23, 2026</span>
         </div>
         <div class="ms-title">Cross-device sync — chats &amp; projects via Supabase</div>
@@ -730,7 +771,7 @@
     <div class="ms">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">08</span>
+          <span class="ms-num">8</span>
           <span class="ms-date">Apr 24, 2026</span>
         </div>
         <div class="ms-title">Web + Local Agent — web UI editing your local Mac</div>
@@ -748,7 +789,7 @@
     <div class="ms now">
       <div class="ms-card">
         <div class="ms-meta">
-          <span class="ms-num">09</span>
+          <span class="ms-num">9</span>
           <span class="ms-date">Apr 27–28, 2026</span>
           <span class="ms-now">Now</span>
         </div>
@@ -769,7 +810,7 @@
   <div class="sec-title" style="margin-top: 72px;">
     <span class="num">02 · What this proves</span>
   </div>
-  <h2 style="font-size: 26px; line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.4px;">How I operate at Staff / Principal level.</h2>
+  <h2 style="font-size: 22px; line-height: 1.25; margin: 0; font-weight: 700; letter-spacing: -0.4px;">How I operate at Staff / Principal level.</h2>
   <p class="sec-desc">WorkPal is the work, not a thought piece. It's the most concentrated demonstration of how I show up: hands-on craft, system thinking, 0→1 instinct, and the player-coach mode that holds the bar at every layer.</p>
 
   <div class="pillars">
