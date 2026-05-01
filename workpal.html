@@ -210,8 +210,10 @@
     transform: none;
   }
   .adv .item.wide { grid-column: span 2; }
-  .adv .body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 8px; }
-  .adv .emoji { font-size: 22px; line-height: 1; margin-bottom: 4px; }
+  .adv .body { padding: 20px 24px 24px; display: flex; flex-direction: row; align-items: flex-start; gap: 12px; }
+  .adv .body > .copy { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; padding-right: 28px; }
+  .adv .icon { width: 18px; height: 18px; color: var(--ink); flex-shrink: 0; margin-top: 2px; }
+  .adv .icon svg { display: block; width: 100%; height: 100%; }
   .adv .t { font-size: 16px; font-weight: 700; letter-spacing: -0.1px; }
   .adv .d { font-size: 14px; line-height: 22px; color: var(--ink-2); margin: 0; }
 
@@ -459,21 +461,66 @@
   .demo-note b { color: var(--ink); font-weight: 600; }
   .demo-note a { color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--blue-soft); }
 
-  /* Design problems solved */
-  .prob { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .prob .item {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
-    padding: 24px;
+  /* Problems WorkPal solves — two-card layout with illustration + screenshots */
+  .problems { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .problem-card {
+    background: var(--card); border: none; border-radius: var(--radius-lg);
+    padding: 28px 28px 0;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    min-height: 380px;
   }
-  .prob .label {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-    color: var(--blue); background: var(--blue-soft);
-    padding: 4px 10px; border-radius: 999px;
-    margin-bottom: 12px;
+  .problem-head {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 4px;
   }
-  .prob .t { font-size: 16px; line-height: 22px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.2px; }
-  .prob .d { font-size: 14px; line-height: 22px; color: var(--ink); margin: 0; }
+  .problem-num {
+    font-size: 22px; line-height: 28px; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.4px;
+    flex-shrink: 0;
+  }
+  .problem-title {
+    font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.4px;
+    color: var(--ink); margin: 0;
+  }
+  .problem-visual {
+    position: relative;
+    flex: 1;
+    margin-top: 16px;
+    min-height: 280px;
+    overflow: hidden;
+  }
+  .problem-illust {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 34%; height: auto;
+    object-fit: contain;
+    z-index: 1;
+  }
+  /* Composite sidebar image for problem 1 */
+  .problem-projects-img {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 65%; height: auto;
+    object-fit: contain;
+    z-index: 2;
+  }
+  .problem-highlight {
+    position: absolute;
+    border: 1.5px solid #E11D48;
+    background: rgba(225, 29, 72, 0.08);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  /* Composite phones image for problem 2 */
+  .problem-voice-img {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 65%; height: auto;
+    object-fit: contain;
+    z-index: 2;
+  }
 
   /* What this proves — 4 pillars */
   .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -513,7 +560,7 @@
     .glance .cell { border-right: none; border-bottom: 1px solid var(--line); }
     .glance .cell:nth-child(odd) { border-right: 1px solid var(--line); }
     .glance .cell:nth-last-child(-n+2) { border-bottom: none; }
-    .adv, .prob { grid-template-columns: 1fr; }
+    .adv, .problems { grid-template-columns: 1fr; }
     .adv .item.wide { grid-column: span 1; }
     .pillars { grid-template-columns: repeat(2, 1fr); }
     .outro { grid-template-columns: 1fr; }
@@ -573,7 +620,6 @@
       <img src="workpal-hero.jpg" alt="WorkPal 2.0 — Chat + Tasks in the Same Project, Voice-Enabled Rich Input, Selective Knowledge Output, Overview page." />
     </a>
 
-    <span class="kicker"><span class="dot"></span>Case Study · Agentic AI</span>
     <h1>Agent <span class="grad">Interaction Protocols</span>.</h1>
 
     <div class="cta-row">
@@ -601,51 +647,88 @@
     </div>
   </section>
 
-  <!-- Section 1 — Product advantages -->
-  <div class="sec-title">
-    <span class="num">01 · The product</span>
+  <!-- Section — Problems WorkPal solves -->
+  <h2 style="font-size: 22px; line-height: 1.25; margin: 64px 0 24px; font-weight: 700; letter-spacing: -0.4px;">What problems WorkPal solves.</h2>
+
+  <div class="problems">
+    <div class="problem-card">
+      <div class="problem-head">
+        <span class="problem-num">1.</span>
+        <h3 class="problem-title">Why was one project divided into chat and task files?</h3>
+      </div>
+      <div class="problem-visual">
+        <img class="problem-illust" src="workpal-assets/problem-illust-dizzy.png" alt="" aria-hidden="true" />
+        <img class="problem-projects-img" src="workpal-assets/problem-projects-split.png" alt="Two sidebars showing Projects under both Chat and Cowork tabs, highlighted in red" />
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <div class="problem-head">
+        <span class="problem-num">2.</span>
+        <h3 class="problem-title">Voice input is too limited for real work.</h3>
+      </div>
+      <div class="problem-visual">
+        <img class="problem-illust" src="workpal-assets/problem-illust-annoyed.png" alt="" aria-hidden="true" />
+        <img class="problem-voice-img" src="workpal-assets/problem-voice-split.png" alt="Two phone screenshots — voice chat suggesting to switch to text and ChatGPT Voice unable to access the website, both highlighted in red" />
+      </div>
+    </div>
   </div>
-  <h2 style="font-size: 22px; line-height: 1.25; margin: 0 0 24px; font-weight: 700; letter-spacing: -0.4px;">Four things WorkPal does differently.</h2>
+
+  <!-- Section 1 — Product advantages -->
+  <h2 style="font-size: 22px; line-height: 1.25; margin: 64px 0 24px; font-weight: 700; letter-spacing: -0.4px;">Four things WorkPal does differently.</h2>
 
   <div class="adv">
     <a class="item" href="https://my-workpal.vercel.app/project/proj-1" target="_blank" rel="noopener">
       <div class="body">
-        <div class="emoji">✨</div>
-        <div class="t">Chat + Tasks in the Same Project</div>
-        <p class="d">Chat (OpenAI models) and Tasks (Anthropic agents) share the same project memory—keeping conversation and execution seamlessly connected.</p>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+        </span>
+        <div class="copy">
+          <div class="t">Chat + Tasks in the Same Project</div>
+          <p class="d">Chat (OpenAI models) and Tasks (Anthropic agents) share the same project memory—keeping conversation and execution seamlessly connected.</p>
+        </div>
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/" target="_blank" rel="noopener">
       <div class="body">
-        <div class="emoji">🎤</div>
-        <div class="t">Voice-Enabled Rich Input</div>
-        <p class="d">In voice mode, you can add rich inputs anytime—text, images, or files—without breaking the flow.</p>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+        </span>
+        <div class="copy">
+          <div class="t">Voice-Enabled Rich Input</div>
+          <p class="d">In voice mode, you can add rich inputs anytime—text, images, or files—without breaking the flow.</p>
+        </div>
       </div>
     </a>
 
     <a class="item demo-only" href="mailto:beibeizhang1122@gmail.com?subject=WorkPal%20live%20demo" rel="noopener">
       <div class="body">
-        <div class="emoji">📤</div>
-        <div class="t">Selective Knowledge Output</div>
-        <p class="d">Merge high-quality task results into your documents—turning outputs into reusable knowledge for future tasks.</p>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+        </span>
+        <div class="copy">
+          <div class="t">Selective Knowledge Output</div>
+          <p class="d">Merge high-quality task results into your documents—turning outputs into reusable knowledge for future tasks.</p>
+        </div>
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">
       <div class="body">
-        <div class="emoji">📊</div>
-        <div class="t">Overview Page</div>
-        <p class="d">Get a clear view of your agent's progress across all projects—at a glance.</p>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        </span>
+        <div class="copy">
+          <div class="t">Overview Page</div>
+          <p class="d">Get a clear view of your agent's progress across all projects—at a glance.</p>
+        </div>
       </div>
     </a>
   </div>
 
   <!-- Milestones — 5 phases -->
-  <div class="milestones-head">
-    <span class="num">Milestones</span>
-  </div>
-  <h3 style="margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Nine phases in 33 days — research to knowledge base.</h3>
+  <h3 style="margin: 64px 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Milestones</h3>
   <p class="milestones-sub">Mar 26 → Apr 28, 2026.</p>
 
   <div class="milestones">
@@ -803,36 +886,6 @@
           <span class="ms-tag">Native Folder Picker</span>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Section 2 — What this proves -->
-  <div class="sec-title" style="margin-top: 72px;">
-    <span class="num">02 · What this proves</span>
-  </div>
-  <h2 style="font-size: 22px; line-height: 1.25; margin: 0; font-weight: 700; letter-spacing: -0.4px;">How I operate at Staff / Principal level.</h2>
-  <p class="sec-desc">WorkPal is the work, not a thought piece. It's the most concentrated demonstration of how I show up: hands-on craft, system thinking, 0→1 instinct, and the player-coach mode that holds the bar at every layer.</p>
-
-  <div class="pillars">
-    <div class="pillar">
-      <div class="num">01</div>
-      <div class="t">Agentic AI, hands-on</div>
-      <div class="d">I build and ship the interaction protocols for AI surfaces — not just write about them. WorkPal is end-to-end my work: hero flow to design tokens.</div>
-    </div>
-    <div class="pillar">
-      <div class="num">02</div>
-      <div class="t">Systems-level thinking</div>
-      <div class="d">36 primitives, 11 principles, full token system, dark mode. Direct lineage to my Tencent cross-product SNS guidelines and Walmart Last Mile platform work.</div>
-    </div>
-    <div class="pillar">
-      <div class="num">03</div>
-      <div class="t">0→1 builder</div>
-      <div class="d">Same instinct that drove Tooride (cofounder/CPO, 5-yr venture). Comfortable defining a category, not just decorating an existing one.</div>
-    </div>
-    <div class="pillar">
-      <div class="num">04</div>
-      <div class="t">Player-coach craft</div>
-      <div class="d">Hands on every surface, every token. This is what Staff / Principal looks like when the AI category is too new to have a playbook.</div>
     </div>
   </div>
 
