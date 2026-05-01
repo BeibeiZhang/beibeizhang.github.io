@@ -168,20 +168,27 @@
   }
   .sec-desc { font-size: 16px; line-height: 32px; color: var(--ink-2); margin: 8px 0 24px; max-width: 760px; }
 
-  /* Product advantages — 3 cards with UI mockups */
+  /* Product advantages — 4 cards with illustration on the right */
   .adv {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
   }
   .adv .item {
-    background: var(--card); border-radius: var(--radius-lg);
+    background: var(--card);
+    border: 1px dashed #c8ccd6;
+    border-radius: var(--radius-lg);
     padding: 0;
     display: flex; flex-direction: column;
     overflow: hidden;
     position: relative;
     color: var(--ink); text-decoration: none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   }
-  .adv .item:hover { transform: translateY(-2px); text-decoration: none; box-shadow: var(--shadow-card-hover); }
+  .adv .item:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: var(--shadow-card-hover);
+    border-color: transparent;
+  }
   .adv a.item:hover { text-decoration: none; }
   /* Right arrow on clickable cards */
   .adv a.item::after {
@@ -210,12 +217,22 @@
     transform: none;
   }
   .adv .item.wide { grid-column: span 2; }
-  .adv .body { padding: 20px 24px 24px; display: flex; flex-direction: row; align-items: flex-start; gap: 12px; }
-  .adv .body > .copy { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; padding-right: 28px; }
-  .adv .icon { width: 18px; height: 18px; color: var(--ink); flex-shrink: 0; margin-top: 2px; }
-  .adv .icon svg { display: block; width: 100%; height: 100%; }
-  .adv .t { font-size: 16px; font-weight: 700; letter-spacing: -0.1px; }
+  .adv .body {
+    padding: 28px 32px;
+    display: flex; flex-direction: row; align-items: center; gap: 16px;
+    min-height: 220px;
+  }
+  .adv .body > .copy {
+    display: flex; flex-direction: column; gap: 10px;
+    flex: 1; min-width: 0; padding-right: 28px;
+  }
+  .adv .t { font-size: 18px; font-weight: 700; letter-spacing: -0.2px; line-height: 1.3; }
   .adv .d { font-size: 14px; line-height: 22px; color: var(--ink-2); margin: 0; }
+  .adv .illust {
+    width: 180px; max-width: 42%;
+    height: auto; flex-shrink: 0; display: block;
+    pointer-events: none; user-select: none;
+  }
 
   /* UI mockups — CSS-only illustrations matching WorkPal design system */
   .mockup {
@@ -680,49 +697,41 @@
   <div class="adv">
     <a class="item" href="https://my-workpal.vercel.app/project/proj-1" target="_blank" rel="noopener">
       <div class="body">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
-        </span>
         <div class="copy">
           <div class="t">Chat + Tasks in the Same Project</div>
           <p class="d">Chat (OpenAI models) and Tasks (Anthropic agents) share the same project memory—keeping conversation and execution seamlessly connected.</p>
         </div>
+        <img class="illust" src="workpal-assets/adv-chat-tasks.png" alt="" aria-hidden="true" />
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/" target="_blank" rel="noopener">
       <div class="body">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
-        </span>
         <div class="copy">
           <div class="t">Voice-Enabled Rich Input</div>
           <p class="d">In voice mode, you can add rich inputs anytime—text, images, or files—without breaking the flow.</p>
         </div>
+        <img class="illust" src="workpal-assets/adv-voice.png" alt="" aria-hidden="true" />
       </div>
     </a>
 
     <a class="item demo-only" href="mailto:beibeizhang1122@gmail.com?subject=WorkPal%20live%20demo" rel="noopener">
       <div class="body">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
-        </span>
         <div class="copy">
           <div class="t">Selective Knowledge Output</div>
           <p class="d">Merge high-quality task results into your documents—turning outputs into reusable knowledge for future tasks.</p>
         </div>
+        <img class="illust" src="workpal-assets/adv-knowledge.png" alt="" aria-hidden="true" />
       </div>
     </a>
 
     <a class="item" href="https://my-workpal.vercel.app/overview" target="_blank" rel="noopener">
       <div class="body">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-        </span>
         <div class="copy">
           <div class="t">Overview Page</div>
           <p class="d">Get a clear view of your agent's progress across all projects—at a glance.</p>
         </div>
+        <img class="illust" src="workpal-assets/adv-overview.png" alt="" aria-hidden="true" />
       </div>
     </a>
   </div>
